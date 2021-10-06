@@ -25,7 +25,7 @@ Route::get('/admin', [mainController::class, 'index'])->name('admin');//name :tÃ
 
 Route::prefix('admin/hanghoa')->group(function () {
     Route::prefix('loaisp')->group(function () {
-        Route::get('/',[LoaispController::class,'index']);
+        Route::get('/',[LoaispController::class,'index'])->name('loaisp');
         Route::get('add',[LoaispController::class,'add']);
         Route::post('add',[LoaispController::class,'store']);
         Route::get('edit/{loaisp}',[LoaispController::class,'edit']);

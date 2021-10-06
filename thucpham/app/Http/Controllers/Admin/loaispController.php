@@ -8,6 +8,8 @@ use App\Models\loaisp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use mysql_xdevapi\Exception;
+use function PHPUnit\Framework\exactly;
 
 /**
  *
@@ -26,6 +28,7 @@ class loaispController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(){
+
         return view('admin.loaisp.loaisp', [
             'title' => 'loại sản phẩm',
             'loaisp'=> $this->get()
@@ -64,6 +67,16 @@ class loaispController extends Controller
         ]);*/
         return redirect()->back();
     }
+    public static function name($id){
+        try {
+            return loaisp::where('id',$id)->first()->ten;
+        }
+        catch (\Exception $ex){
+
+        }
+
+        return "";
+    }
     public static function list($loaisp)
     {
         $html = '';
@@ -72,13 +85,11 @@ class loaispController extends Controller
             <tr>
                    <th>' . $loaisp->id . '</th>
                    <th>' . $loaisp->ten . '</th>
-                   <th>' . $loaisp->cha . '</th>
+                   <th>' . self::name($loaisp->cha). '</th>
                    <th>
                         <a  href="/admin/hanghoa/loaisp/edit/'.$loaisp->id.'">
                             <i class="fas fa-edit"></i>
-
                         </a>
-
                         <a  href="#"
                             onclick="removeRow(' . $loaisp->id . ', \'/admin/hanghoa/loaisp/delete\')">
                             <i class="far fa-trash-alt"></i>
@@ -91,5 +102,39 @@ class loaispController extends Controller
         }
         return $html;
     }
+    public function edit(loaisp $loaisp)
+    {
+        //dd($loaisp);
+        return view('admin.loaisp.loaisp_edit', [
+            'title' => 'Chỉnh Sửa loại sản phẩm: ' ,
+            'loaisps' => $this->get(),
+            'loaisp'=>$loaisp
+        ]);
+    }
+    public function update(loaisp $loaisp, loaispRequest $request)
+    {
+        $loaisp->ten=(string)$request->input('name');
+        $loaisp->cha=$request->input('parent');
+        $loaisp->save();
+
+        return redirect('admin/hanghoa/loaisp');
+    }
+    public  function delete(Request $request){
+        $data= loaisp::where('id',$request->input('id'))->first();
+        $result =false;
+        if ($data){
+            $result = loaisp::where('id',$request->input('id'))->delete();
+        }
+        if ($result){
+            return response()->json([
+                'error'=>false,
+                'message'=>'thành công'
+            ]);
+        }
+        return response()->json([
+            'error'=>true
+        ]);
+    }
+
 
 }
