@@ -37,8 +37,8 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Hình ảnh  </label>
                                             <br>
-                                            <input type="file" name="name">
-                                        </div>
+                                            <input type="file" name="image" id="out"> </div>
+                                        <br>
                                         <div class="form-group" style="margin-bottom: 100px">
                                             <a style="float: left" href="/admin/hanghoa/thuonghieu"
                                                class="btn btn-primary btn-user btn-block col-lg-3">Trở về</a>

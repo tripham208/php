@@ -39,7 +39,7 @@ class thuonghieuController extends Controller
         try {
             thuonghieu::create([
                 'ten'=>(string)$request->input('name'),
-                'mota'=>(int)$request->input('description'),
+                'mota'=>(string)$request->input('description'),
                 'anh'=>(string)$request->input('image'),
             ]);
             Session::flash('success','thành công');
@@ -95,12 +95,12 @@ class thuonghieuController extends Controller
         $loaisp->save();
 
         return redirect('admin/hanghoa/loaisp');
-    }
+    }*/
     public  function delete(Request $request){
-        $data= loaisp::where('id',$request->input('id'))->first();
+        $data= thuonghieu::where('id',$request->input('id'))->first();
         $result =false;
         if ($data){
-            $result = loaisp::where('id',$request->input('id'))->delete();
+            $result = thuonghieu::where('id',$request->input('id'))->delete();
         }
         if ($result){
             return response()->json([
@@ -112,5 +112,5 @@ class thuonghieuController extends Controller
             'error'=>true
         ]);
     }
-    */
+
 }
