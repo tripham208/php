@@ -53,7 +53,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Dữ liệu
+            Chức năng
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -61,12 +61,20 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Hàng hóa</span>
+                <span>Dữ liệu</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Hàng hóa:</h6>
                     <a class="collapse-item"  href="/admin/hanghoa/loaisp">Loại hàng hóa</a>
+                    <a class="collapse-item"  href="/admin/hanghoa/thuonghieu">Thương hiệu</a>
+                    <a class="collapse-item"  href="/admin/hanghoa/sanpham">Sản phẩm</a>
+                    <h6 class="collapse-header">Hóa đơn</h6>
+                    <a class="collapse-item"  href="/admin/hoadon/hoadonban">Hóa đơn bán</a>
+                    <a class="collapse-item"  href="/admin/hoadon/hoadonnhap">Hóa đơn nhập</a>
+                    <h6 class="collapse-header">Đối tác</h6>
+                    <a class="collapse-item"  href="/admin/doitac/nhanvien">Nhân viên</a>
+                    <a class="collapse-item"  href="/admin/doitac/nhacungcap">Nhà cung cấp</a>
                 </div>
             </div>
         </li>

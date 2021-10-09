@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\loginController;
 use App\Http\Controllers\Admin\mainController;
 use App\Http\Controllers\Admin\loaispController;
+use App\Http\Controllers\admin\thuonghieuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,14 @@ Route::prefix('admin/hanghoa')->group(function () {
         Route::get('edit/{loaisp}',[LoaispController::class,'edit']);
         Route::post('edit/{loaisp}',[LoaispController::class,'update']);
         Route::delete('delete',[LoaispController::class,'delete']);
+    });
+    Route::prefix('thuonghieu')->group(function () {
+        Route::get('/',[thuonghieuController::class,'index'])->name('thuonghieu');
+        Route::get('add',[thuonghieuController::class,'add']);
+        Route::post('add',[thuonghieuController::class,'store']);
+        Route::get('edit/{thuonghieu}',[thuonghieuController::class,'edit']);
+        Route::post('edit/{thuonghieu}',[thuonghieuController::class,'update']);
+        Route::delete('delete',[thuonghieuController::class,'delete']);
     });
 
 });
