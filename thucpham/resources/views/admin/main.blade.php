@@ -76,8 +76,9 @@
                     <a class="collapse-item"  href="/admin/hoadon/hoadonban">Hóa đơn bán</a>
                     <a class="collapse-item"  href="/admin/hoadon/hoadonnhap">Hóa đơn nhập</a>
                     <h6 class="collapse-header">Đối tác</h6>
-                    <a class="collapse-item"  href="/admin/doitac/nhanvien">Nhân viên</a>
-                    <a class="collapse-item"  href="/admin/doitac/nhacungcap">Nhà cung cấp</a>
+                    <a class="collapse-item"  href="/admin/doitac/1">Khách hàng</a>
+                    <a class="collapse-item"  href="/admin/doitac/2">Nhân viên</a>
+                    <a class="collapse-item"  href="/admin/doitac/3">Nhà cung cấp</a>
                 </div>
             </div>
         </li>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\loginController;
 use App\Http\Controllers\Admin\mainController;
 use App\Http\Controllers\Admin\loaispController;
 use App\Http\Controllers\admin\thuonghieuController;
+use App\Http\Controllers\admin\taikhoanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +42,17 @@ Route::prefix('admin/hanghoa')->group(function () {
         Route::post('edit/{thuonghieu}',[thuonghieuController::class,'update']);
         Route::delete('delete',[thuonghieuController::class,'delete']);
     });
+
+});
+Route::prefix('admin/doitac')->group(function () {
+    Route::prefix('khachhang')->group(function () {
+        //Route::get('/',[taikhoanController::class,'index'])->name('khachhang');
+        /*Route::get('add',[LoaispController::class,'add']);
+        Route::post('add',[LoaispController::class,'store']);
+        Route::get('edit/{loaisp}',[LoaispController::class,'edit']);
+        Route::post('edit/{loaisp}',[LoaispController::class,'update']);
+        Route::delete('delete',[LoaispController::class,'delete']);*/
+    });
+    Route::get('/{loai}',[taikhoanController::class,'index'])->name('taikhoan');
 
 });
