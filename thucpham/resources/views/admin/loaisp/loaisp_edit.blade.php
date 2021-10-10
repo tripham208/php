@@ -23,8 +23,7 @@
                                             <label for="exampleInputEmail"> Tên loại</label>
                                             <input type="" name="name" class="form-control form-control-user"
                                                    id="exampleInputPassword" placeholder="Nhập tên loại"
-                                                   value="{{$loaisp->ten}}"
-                                            >
+                                                   value="{{$loaisp->ten}}">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Tên loại cha</label>

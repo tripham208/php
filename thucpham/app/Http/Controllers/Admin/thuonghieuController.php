@@ -59,7 +59,7 @@ class thuonghieuController extends Controller
             $html .= '
             <tr>
                    <th>' . $item->id . '</th>
-                   <th>' . $item->anh . '</th>
+                   <th> <img src="'.$item->anh.'"  style="width:100%;height:100%;"> </th>
                    <th>' . $item->ten . '</th>
                    <th>' . $item->mota. '</th>
                    <th>
@@ -78,24 +78,25 @@ class thuonghieuController extends Controller
         }
         return $html;
     }
-    /*
-    public function edit(thuonghieu $data)
+
+    public function edit(thuonghieu $thuonghieu)
     {
         //dd($loaisp);
-        return view('admin.loaisp.loaisp_edit', [
+        return view('admin.thuonghieu.thuonghieu_edit', [
             'title' => 'Chỉnh Sửa loại sản phẩm: ' ,
-            'data' => $this->get(),
-            'loaisp'=>$data
+            'loaisp' => $thuonghieu,
+            'ten'=>$thuonghieu->ten
         ]);
     }
-    public function update(loaisp $loaisp, loaispRequest $request)
+    public function update(thuonghieu $thuonghieu, thuonghieuRequest $request)
     {
-        $loaisp->ten=(string)$request->input('name');
-        $loaisp->cha=$request->input('parent');
-        $loaisp->save();
+        $thuonghieu->ten=(string)$request->input('name');
+        $thuonghieu->mota=$request->input('description');
+        $thuonghieu->anh=$request->input('image');
+        $thuonghieu->save();
 
-        return redirect('admin/hanghoa/loaisp');
-    }*/
+        return redirect('admin/hanghoa/thuonghieu');
+    }
     public  function delete(Request $request){
         $data= thuonghieu::where('id',$request->input('id'))->first();
         $result =false;
