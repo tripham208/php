@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\mainController;
 use App\Http\Controllers\Admin\loaispController;
 use App\Http\Controllers\admin\thuonghieuController;
 use App\Http\Controllers\admin\taikhoanController;
+use App\Http\Controllers\Admin\sanPhamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::get('/', function () {
 });
 Route::get('/admin/login', [loginController::class, 'index'])->name('login_admin');//name :tên router
 Route::post('/admin/login/check', [loginController::class, 'check'])->name('check_login_admin');
-Route::get('/admin', [mainController::class, 'index'])->name('admin');//name :tên router
+Route::get('/admin/main', [mainController::class, 'index'])->name('admin');//name :tên router
 
 Route::prefix('admin/hanghoa')->group(function () {
     Route::prefix('loaisp')->group(function () {
@@ -41,6 +42,14 @@ Route::prefix('admin/hanghoa')->group(function () {
         Route::get('edit/{thuonghieu}',[thuonghieuController::class,'edit']);
         Route::post('edit/{thuonghieu}',[thuonghieuController::class,'update']);
         Route::delete('delete',[thuonghieuController::class,'delete']);
+    });
+    Route::prefix('sanpham')->group(function () {
+        Route::get('/',[sanPhamController::class,'index'])->name('sanpham');
+            Route::get('add',[sanPhamController::class,'add']);
+        Route::post('add',[sanPhamController::class,'store']);
+        Route::get('edit/{sanpham}',[sanPhamController::class,'edit']);
+        Route::post('edit/{sanpham}',[sanPhamController::class,'update']);
+        Route::delete('delete',[sanPhamController::class,'delete']);
     });
 
 });

@@ -58,7 +58,7 @@ class thuonghieuController extends Controller
         foreach ($data as $key => $item) {
             $html .= '
             <tr>
-                   <th>' . $item->id . '</th>
+                   <th >' . $item->id . '</th>
                    <th> <img src="'.$item->anh.'"  style="width:100%;height:100%;"> </th>
                    <th>' . $item->ten . '</th>
                    <th>' . $item->mota. '</th>
