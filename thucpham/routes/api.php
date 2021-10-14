@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\sanPhamAPIController;
+use App\Http\Controllers\API\productApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('product',[sanPhamAPIController::class,'product']);
+
+Route::apiResource('product', productApiController::class);
+Route::get('product/category/{idthuonghieu?}', [productApiController::class, 'getByCategory']);
