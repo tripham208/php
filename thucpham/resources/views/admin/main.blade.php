@@ -61,6 +61,20 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="" data-target=""
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Duyệt đơn hàng</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/hoadon/nhap/add" data-toggle="" data-target=""
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Nhập hàng</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
@@ -73,8 +87,8 @@
                     <a class="collapse-item"  href="/admin/hanghoa/thuonghieu">Thương hiệu</a>
                     <a class="collapse-item"  href="/admin/hanghoa/sanpham">Sản phẩm</a>
                     <h6 class="collapse-header">Hóa đơn</h6>
-                    <a class="collapse-item"  href="/admin/hoadon/hoadonban">Hóa đơn bán</a>
-                    <a class="collapse-item"  href="/admin/hoadon/hoadonnhap">Hóa đơn nhập</a>
+                    <a class="collapse-item"  href="/admin/hoadon/ban">Hóa đơn bán</a>
+                    <a class="collapse-item"  href="/admin/hoadon/nhap">Hóa đơn nhập</a>
                     <h6 class="collapse-header">Đối tác</h6>
                     <a class="collapse-item"  href="/admin/doitac/1">Khách hàng</a>
                     <a class="collapse-item"  href="/admin/doitac/2">Nhân viên</a>
@@ -82,6 +96,7 @@
                 </div>
             </div>
         </li>
+
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">

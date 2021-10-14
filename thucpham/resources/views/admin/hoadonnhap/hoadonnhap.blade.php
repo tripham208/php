@@ -8,12 +8,12 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h3 class="h3 mb-2 text-gray-800">Dữ liệu</h3>
+        <h3 class="h3 mb-2 text-gray-800">Dữ liệu </h3>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Danh sách thương hiệu</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Danh sách hóa đơn nhập</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -21,16 +21,17 @@
                         <thead>
                         <tr>
                             <th style="width: 5%">Mã</th>
-                            <th style="width: 15%">Logo</th>
-                            <th style="width: 20%">Tên thương hiệu</th>
-                            <th>Mô tả</th>
-                            <th style="width: 70px"><a href="/admin/hanghoa/thuonghieu/add">Thêm</a></th>
+                            <th style="width: 25%">Nhân viên</th>
+                            <th style="width: 25%">Nhà cung cấp</th>
+                            <th>Tổng tiền</th>
+                            <th>Thời gian</th>
+                            <th style="width: 50px"><a href="/admin/hoadon/nhap/add">Thêm</a></th>
                         </tr>
                         </thead>
                         <tbody>
 
 
-                        {!!\App\Http\Controllers\Admin\thuonghieuController::list($data)!!}
+                        {!!\App\Http\Controllers\Admin\nhapHangController::list($data)!!}
 
 
                         </tbody>
