@@ -19,7 +19,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                        <tr>
+                        <tr >
                             <th style="width: 5%">Mã</th>
                             <th style="width: 25%">Nhân viên</th>
                             <th style="width: 25%">Nhà cung cấp</th>

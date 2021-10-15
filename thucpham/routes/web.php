@@ -66,6 +66,7 @@ Route::prefix('admin/hoadon')->group(function () {
         /*Route::get('edit/{loaisp}',[LoaispController::class,'edit']);
         Route::post('edit/{loaisp}',[LoaispController::class,'update']);
         Route::delete('delete',[LoaispController::class,'delete']);*/
+        Route::get('chitiet/{hoadonnhap}',[nhapHangController::class,'chitiet']);
     });
 
 });
