@@ -4,10 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\sanpham;
+use App\Models\loaisp;
 use Validator;
 
-class productApiController extends Controller
+class categoryApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,7 @@ class productApiController extends Controller
      */
     public function index()
     {
-        $productList = sanpham::paginate(5);
-        return response()->json($productList, 200);
+        return response()->json(loaisp::all(), 200);
     }
 
     /**
@@ -49,7 +48,7 @@ class productApiController extends Controller
      */
     public function show($id)
     {
-        $product = sanpham::find($id);
+        $product = loaisp::find($id);
         if (is_null($product)) {
             return response()->json(['Not Found', 404]);
         }
@@ -76,7 +75,7 @@ class productApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = sanpham::find($id);
+        $product = loaisp::find($id);
         if (is_null($product)) {
             return response()->json(["message" => "Not found"], 404);
         }
@@ -92,7 +91,7 @@ class productApiController extends Controller
      */
     public function destroy($id)
     {
-        $product = sanpham::find($id);
+        $product = loaisp::find($id);
         if (is_null($product)) {
             return response()->json(["message" => "Not found"], 404);
         }
@@ -100,8 +99,12 @@ class productApiController extends Controller
         return response()->json(null, 200);
     }
 
-    public function getByCategory($idloai)
+    public function getByNameCategory($ten)
     {
-        return sanpham::where('idloai', $idloai)->get();
+        return loaisp::where('ten', $ten)->get();
+    }
+    public function getByNameFatherCategory($cha)
+    {
+        return loaisp::where('cha', $cha)->get();
     }
 }
