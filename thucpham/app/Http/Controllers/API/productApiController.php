@@ -49,7 +49,11 @@ class productApiController extends Controller
      */
     public function show($id)
     {
-        return response()->json(sanpham::find($id), 200);
+        $product = sanpham::find($id);
+        if (is_null($product)) {
+            return response()->json(['Not Found', 404]);
+        }
+        return response()->json($product, 200);
     }
 
     /**
@@ -95,7 +99,7 @@ class productApiController extends Controller
         $product->delete();
         return response()->json(null, 200);
     }
-    
+
     public function getByCategory($idthuonghieu)
     {
         return sanpham::where('idthuonghieu', $idthuonghieu)->get();
