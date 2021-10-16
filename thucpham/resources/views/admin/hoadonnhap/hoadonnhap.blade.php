@@ -25,7 +25,6 @@
                             <th style="width: 25%">Nhà cung cấp</th>
                             <th>Tổng tiền</th>
                             <th>Thời gian</th>
-                            <th style="width: 50px"><a href="/admin/hoadon/nhap/add">Thêm</a></th>
                         </tr>
                         </thead>
                         <tbody>

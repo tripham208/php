@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\chitietnhapRequest;
 use App\Http\Requests\hoadonnhapRequest;
 use App\Models\chitiethoadonnhap;
 use App\Models\hoadonnhap;
+use App\Models\sanpham;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -48,16 +50,29 @@ class nhapHangController extends Controller
             'data'=> chitiethoadonnhap::where('idhoadonnhap',$hoadonnhap->id)->get()
         ]);
     }
+    public function chitiet_add(hoadonnhap $hoadonnhap)
+    {
+        return view('admin.hoadonnhap.hoadonnhap_addchitiet', [
+            'title' => 'Chi tiết hóa đơn nhập',
+            'hoadon'=>$hoadonnhap,
+            'sanpham'=>sanpham::all(),
+            'data'=> chitiethoadonnhap::where('idhoadonnhap',$hoadonnhap->id)->get()
+        ]);
+    }
 
     public function store(hoadonnhapRequest $request)
     {
         //dd($request->input());
         //tạo bằng model
+
+        date_default_timezone_set('Asia/Bangkok');
+        $date = date('Y/m/d H:i:s');
         try {
-            /*::create([
-                'ten' => (string)$request->input('name'),
-                'cha' => (int)$request->input('parent')
-            ]);*/
+            hoadonnhap::create([
+                'idnhanvien' => (int)$request->input('nv'),
+                'idnhacungcap' => (int)$request->input('ncc'),
+                'thoigian'=> $date
+            ]);
             Session::flash('success', 'thành công');
         } catch (\Exception $exception) {
             Session::flash('error', $exception->getMessage());
@@ -66,7 +81,7 @@ class nhapHangController extends Controller
         /*DB::table('loaisp')->insert([
             'ten' => 'kayla@example.com'
         ]);*/
-        return redirect()->back();
+        return redirect()->route('edit_nhap',['hoadonnhap'=>hoadonnhap::where('thoigian', $date)->first()->id]);
     }
 
 
@@ -81,18 +96,51 @@ class nhapHangController extends Controller
                    <th>' . self::name($item->idnhacungcap) . '</th>
                    <th>' . $item->tongtien . '</th>
                    <th>' . $item->thoigian . '</th>
-                   <th>
-                        <a  href="#"
-                            onclick="removeRow(' . "1" . ', \'/admin/hanghoa/nhap/delete\')">
-                            <i class="far fa-trash-alt"></i>
-                        </a>
-
-                   </th>
             </tr>
             ';
             // unset($loaisp[$key]);
         }
         return $html;
+    }
+    public function update(hoadonnhap $hoadonnhap, chitietnhapRequest $request)
+    {
+        //dd($request->input());
+        try {
+            chitiethoadonnhap::create([
+                'idhoadonnhap' => $hoadonnhap->id,
+                'idsanpham' => (int)$request->input('sp'),
+                'soluong' => (int)$request->input('sl'),
+                'dongia' => (int)$request->input('dg'),
+                'giamgia' => (int)$request->input('gg'),
+                'hansudung' => (string)$request->input('hsd'),
+                'serial' => (string)$request->input('sr')
+            ]);
+            Session::flash('success', 'thành công');
+        } catch (\Exception $exception) {
+            Session::flash('error', $exception->getMessage());
+        }
+        return redirect()->route('edit_nhap',['hoadonnhap'=>$hoadonnhap->id]);
+
+    }
+    public  function delete(Request $request){
+        $data= thuonghieu::where('id',$request->input('id'))->first();
+        $result =false;
+        if ($data){
+            $result = thuonghieu::where('id',$request->input('id'))->delete();
+        }
+        if ($result){
+            return response()->json([
+                'error'=>false,
+                'message'=>'thành công'
+            ]);
+        }
+        return response()->json([
+            'error'=>true
+        ]);
+    }
+    public function save(hoadonnhap $hoadonnhap)
+    {
+        echo "save";
     }
 
 
