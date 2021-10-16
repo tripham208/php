@@ -139,9 +139,9 @@
         </div>
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a style="float: left" href="/admin/hoadon/nhap" methods=""
+                <a style="float: left" href="/admin/hoadon/nhap/delete/{{$hoadon->id}}"
                    class="btn btn-primary btn-user btn-block col-lg-3">Trở về</a>
-                <a style="float: right" href="/admin/hoadon/nhap/save/{{$hoadon->id}}" methods=""
+                <a style="float: right" href="/admin/hoadon/nhap/save/{{$hoadon->id}}"
                    class="btn btn-primary btn-user btn-block col-lg-3">Lưu</a>
             </div>
 
