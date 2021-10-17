@@ -63,9 +63,11 @@ Route::prefix('admin/hoadon')->group(function () {
         Route::get('/',[nhapHangController::class,'index'])->name('hoadonnhap');
         Route::get('add',[nhapHangController::class,'add']);
         Route::post('add',[nhapHangController::class,'store']);
-        /*Route::get('edit/{loaisp}',[LoaispController::class,'edit']);
-        Route::post('edit/{loaisp}',[LoaispController::class,'update']);
-        Route::delete('delete',[LoaispController::class,'delete']);*/
+        Route::get('edit/{hoadonnhap}',[nhapHangController::class,'chitiet_add'])->name('edit_nhap');
+        Route::post('edit/{hoadonnhap}',[nhapHangController::class,'update']);
+        Route::any('save/{hoadonnhap}',[nhapHangController::class,'save']);
+        Route::any('delete/{hoadonnhap}',[nhapHangController::class,'delete']);
+        Route::get('chitiet/{hoadonnhap}',[nhapHangController::class,'chitiet']);
     });
 
 });

@@ -42,12 +42,14 @@
                                             <a style="float: left" href="/admin/hanghoa/loaisp"
                                                class="btn btn-primary btn-user btn-block col-lg-3">Trở về</a>
                                             <button type="submit" style="float: right;margin-top: 10px" class="btn btn-primary btn-user btn-block col-lg-3">
-                                                Lưu
+                                                Tiếp
                                             </button>
 
                                         </div>
                                         @csrf
                                     </form>
+                                    <!-- Button trigger modal -->
+
                                     <hr>
                                 </div>
                             </div>
