@@ -16,7 +16,8 @@ class productApiController extends Controller
      */
     public function index()
     {
-        $productList = sanpham::paginate(5);
+        $productList = sanpham::paginate(6);
+        // $productList = sanpham::all();
         return response()->json($productList, 200);
     }
 
@@ -102,6 +103,6 @@ class productApiController extends Controller
 
     public function getByCategory($idloai)
     {
-        return sanpham::where('idloai', $idloai)->get();
+        return sanpham::where('idloai', $idloai)->paginate(1);
     }
 }
