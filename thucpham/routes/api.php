@@ -6,6 +6,8 @@ use App\Http\Controllers\API\productApiController;
 use App\Http\Controllers\API\categoryApiController;
 use App\Http\Controllers\API\brandApiController;
 use App\Http\Controllers\API\userApiController;
+use App\Http\Controllers\API\billApiController;
+use App\Http\Controllers\API\billDetailApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +40,12 @@ Route::get('brand/name/{ten?}', [brandApiController::class, 'getByNameBrand']);
 //Thong tin tai khoan API
 Route::apiResource('user', userApiController::class);
 Route::get('user/email/{email?}', [userApiController::class, 'getByEmail']);
+
+//Thong tin don hang API
+Route::apiResource('bill', billApiController::class);
+Route::get('bill/id-customer/{idkhachhang?}', [billApiController::class, 'getByIDCustomer']);
+
+//Thong tin chi tiet don hang API
+Route::apiResource('bill', billDetailApiController::class);
+Route::get('bill-detail/id-bill/{idhoadon?}', [billDetailApiController::class, 'getByIDBill']);
+Route::get('bill-detail/id-product/{idsanpham?}', [billDetailApiController::class, 'getByIDProduct']);
