@@ -57,6 +57,7 @@ Route::prefix('admin/hanghoa')->group(function () {
 });
 Route::prefix('admin/doitac')->group(function () {
     Route::get('/{loai}', [taikhoanController::class, 'index'])->name('taikhoan');
+    Route::get('chitiet/{taikhoan}', [taikhoanController::class, 'chitiet']);
 });
 Route::prefix('admin/hoadon')->group(function () {
     Route::prefix('nhap')->group(function () {
@@ -69,5 +70,10 @@ Route::prefix('admin/hoadon')->group(function () {
         Route::any('delete/{hoadonnhap}',[nhapHangController::class,'delete']);
         Route::get('chitiet/{hoadonnhap}',[nhapHangController::class,'chitiet']);
     });
-
+    Route::prefix('ban')->group(function () {
+        Route::get('/{loai}',[donHangController::class,'index'])->name('hoadonban');
+        Route::get('chitiet/{hoadonban}',[donHangController::class,'chitiet']);
+        Route::get('chitiet/duyet/{hoadonban}',[donHangController::class,'duyet']);
+        Route::get('chitiet/giao/{hoadonban}',[donHangController::class,'giao']);
+    });
 });

@@ -7,28 +7,51 @@
 @section('content')
     <div class="container-fluid">
 
+        <!-- Page Heading -->
+        <div class="card shadow mb-4">
+
+            <div class="card-header py-3">
+                <h3 class="h3 mb-2 text-gray-800">Chi tiết {{$loaitaikhoan}} {{$taikhoan->ten}}</h3>
+            </div>
+            <div class="card-body">
+                <h4>Số điện thoại:{{$taikhoan->sdt}} </h4>
+                <h4>Email:{{$taikhoan->email}} </h4>
+                <h4>Địa chỉ:{{$taikhoan->diachi}} </h4>
+            </div>
+        </div>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Danh sách thương hiệu</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Danh sách chi tiết hóa đơn </h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th style="width: 5%">Mã</th>
-                            <th style="width: 15%">Logo</th>
-                            <th style="width: 20%">Tên thương hiệu</th>
-                            <th>Mô tả</th>
-                            <th style="width: 70px"><a href="/admin/hanghoa/thuonghieu/add">Thêm</a></th>
+                            <th style="width: 5%" >STT</th>
+                            <th style="">Nhân viên nhập</th>
+                            <th style="">Tổng tiền</th>
+                            <th style="">Thời gian</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @php
+                            $x=0
+                        @endphp
+                        @foreach($data as $item)
+                            @php
+                                $x+=1
+                            @endphp
+                            <tr onclick="location.href='/admin/hoadon/nhap/chitiet/ {{$item->id}}'">
+                                <th>{{$x}}</th>
+                                <th>{{\App\Models\User::name($item->idnhanvien)}}</th>
+                                <th> {{$item->tongtien}}</th>
+                                <th>{{$item->thoigian}}</th>
+                            </tr>
 
-
-                        {!!\App\Http\Controllers\Admin\thuonghieuController::list($data)!!}
+                        @endforeach
 
 
                         </tbody>
@@ -57,7 +80,7 @@
                 $.ajax({
                     type: 'DELETE',
                     datatype: 'JSON',
-                    data: { id },
+                    data: {id},
                     url: url,
                     success: function (result) {
                         if (result.error === false) {

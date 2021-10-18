@@ -61,24 +61,25 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="" data-target=""
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Duyệt đơn hàng</span>
+                <span>Đơn hàng</span>
             </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="/admin/hoadon/nhap/add" data-toggle="" data-target=""
-               aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Nhập hàng</span>
-            </a>
+            <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Đơn hàng</h6>
+                    <a class="collapse-item"  href="/admin/hoadon/ban/3">Đơn đặt</a>
+                    <a class="collapse-item"  href="/admin/hoadon/ban/4">Vận đơn</a>
+                </div>
+            </div>
+
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Dữ liệu</span>
+                <span>Hàng hóa</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
@@ -86,36 +87,48 @@
                     <a class="collapse-item"  href="/admin/hanghoa/loaisp">Loại hàng hóa</a>
                     <a class="collapse-item"  href="/admin/hanghoa/thuonghieu">Thương hiệu</a>
                     <a class="collapse-item"  href="/admin/hanghoa/sanpham">Sản phẩm</a>
-                    <h6 class="collapse-header">Hóa đơn</h6>
-                    <a class="collapse-item"  href="/admin/hoadon/ban">Hóa đơn bán</a>
-                    <a class="collapse-item"  href="/admin/hoadon/nhap">Hóa đơn nhập</a>
-                    <h6 class="collapse-header">Đối tác</h6>
+                </div>
+            </div>
+
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Đối tác</span>
+            </a>
+            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Giao dịch</h6>
                     <a class="collapse-item"  href="/admin/doitac/1">Khách hàng</a>
-                    <a class="collapse-item"  href="/admin/doitac/2">Nhân viên</a>
                     <a class="collapse-item"  href="/admin/doitac/3">Nhà cung cấp</a>
                 </div>
             </div>
         </li>
-
-
-        <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Giao dịch</span>
             </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
+            <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                    <h6 class="collapse-header">Giao dịch</h6>
+                    <a class="collapse-item"  href="/admin/hoadon/nhap/add">Nhập hàng</a>
+                    <a class="collapse-item"  href="/admin/hoadon/ban/2">Hóa đơn bán</a>
+                    <a class="collapse-item"  href="/admin/hoadon/nhap">Hóa đơn nhập</a>
                 </div>
             </div>
+
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/doitac/2" data-toggle="" data-target=""
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Nhân viên</span>
+            </a>
+        </li>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider">

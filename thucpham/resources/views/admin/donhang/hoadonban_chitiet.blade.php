@@ -11,11 +11,11 @@
         <div class="card shadow mb-4">
 
             <div class="card-header py-3">
-                <h3 class="h3 mb-2 text-gray-800">Chi tiết hóa đơn nhập {{$hoadon->id}}</h3>
+                <h3 class="h3 mb-2 text-gray-800">Chi tiết {{$loaidon}} {{$hoadon->id}}</h3>
             </div>
             <div class="card-body">
-                <h4>Nhân viên: {{\App\Http\Controllers\Admin\nhapHangController::name($hoadon->idnhanvien)}}</h4>
-                <h4>Nhà cung cấp: {{\App\Http\Controllers\Admin\nhapHangController::name($hoadon->idnhacungcap)}}</h4>
+                <h4>Nhân viên: {{\App\Models\User::name($hoadon->idnhanvien)}}</h4>
+                <h4>Khách hàng: {{\App\Models\User::name($hoadon->idkhachhang)}}</h4>
                 <h4>Thời gian: {{$hoadon->thoigian}}</h4>
                 <h4>Tổng tiền: {{$hoadon->tongtien}}</h4>
             </div>
@@ -24,20 +24,29 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Danh sách chi tiết hóa đơn </h6>
+                <h6 class="m-0 font-weight-bold text-primary" style="float: left">Danh sách chi tiết {{$loaidon}} </h6>
+                 @if($hoadon->loaidon==3)
+                <a class="btn btn-primary" href="duyet/{{$hoadon->id}}"
+                        style="float: right">
+                    Duyệt đơn
+                </a>
+                @elseif($hoadon->loaidon==4)
+                        <a class="btn btn-primary" href="giao/{{$hoadon->id}}"
+                           style="float: right">
+                            Giao thành công
+                        </a>
+                @endif
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th style="width: 5%" >STT</th>
+                            <th style="width: 5%">STT</th>
                             <th style="">Sản phẩm</th>
                             <th style="width: 15%">Số lượng</th>
                             <th style="width: 10%">Đơn giá</th>
                             <th style="width: 10%">Giảm giá</th>
-                            <th style="width: 20%">Hạn sử dụng</th>
-                            <th style="width: 10%">Serial</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -54,8 +63,6 @@
                                 <th> {{$item->soluong}}</th>
                                 <th>{{$item->dongia}}</th>
                                 <th>{{$item->giamgia}}</th>
-                                <th>{{$item->hansudung}}</th>
-                                <th>{{$item->serial}}</th>
                             </tr>
 
                         @endforeach
@@ -66,7 +73,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 @endsection
 @section('footer')
     <!-- Page level plugins -->

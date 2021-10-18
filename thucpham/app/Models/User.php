@@ -25,6 +25,7 @@ class User extends Authenticatable
         'matkhau',
         'ten',
         'sdt',
+        'diachi',
         'matkhau',
         'loaitaikhoan'
     ];
@@ -47,4 +48,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public static function name($id)
+    {
+        try {
+            return User::where('id', $id)->first()->ten;
+        } catch (\Exception $ex) {
+
+        }
+
+        return "";
+    }
 }
