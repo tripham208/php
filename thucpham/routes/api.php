@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\productApiController;
 use App\Http\Controllers\API\categoryApiController;
 use App\Http\Controllers\API\brandApiController;
+use App\Http\Controllers\API\userApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,7 @@ Route::get('category/name-father/{cha?}', [categoryApiController::class, 'getByN
 //Thong tin thuong hieu API
 Route::apiResource('brand', brandApiController::class);
 Route::get('brand/name/{ten?}', [brandApiController::class, 'getByNameBrand']);
+
+//Thong tin tai khoan API
+Route::apiResource('user', userApiController::class);
+Route::get('user/email/{email?}', [userApiController::class, 'getByEmail']);
