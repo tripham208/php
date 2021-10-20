@@ -36,7 +36,8 @@ class billDetailApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $billDetail = chitietdonhang::create($request->all());
+        return response()->json($billDetail, 201);
     }
 
     /**

@@ -26,7 +26,6 @@ class User extends Authenticatable
         'ten',
         'sdt',
         'diachi',
-        'matkhau',
         'loaitaikhoan'
     ];
 

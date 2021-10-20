@@ -36,7 +36,8 @@ class billApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bill = donhang::create($request->all());
+        return response()->json($bill, 201);
     }
 
     /**
