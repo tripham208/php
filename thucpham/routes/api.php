@@ -46,6 +46,6 @@ Route::apiResource('bill', billApiController::class);
 Route::get('bill/id-customer/{idkhachhang?}', [billApiController::class, 'getByIDCustomer']);
 
 //Thong tin chi tiet don hang API
-Route::apiResource('bill', billDetailApiController::class);
+Route::apiResource('bill-detail', billDetailApiController::class);
 Route::get('bill-detail/id-bill/{idhoadon?}', [billDetailApiController::class, 'getByIDBill']);
 Route::get('bill-detail/id-product/{idsanpham?}', [billDetailApiController::class, 'getByIDProduct']);
