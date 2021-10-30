@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\sanphamRequest;
+use App\Models\hoadonnhap;
 use App\Models\loaisp;
 use App\Models\sanpham;
 use App\Models\thuonghieu;
@@ -145,10 +146,10 @@ class sanPhamController extends Controller
     }
 
     public  function delete(Request $request){
-        $data= sanpham::where('id',$request->input('id'))->first();
+        $data= hoadonnhap::where('id',$request->input('id'))->first();
         $result =false;
         if ($data){
-            $result = sanpham::where('id',$request->input('id'))->delete();
+            $result = hoadonnhap::where('id',$request->input('id'))->delete();
         }
         if ($result){
             return response()->json([
