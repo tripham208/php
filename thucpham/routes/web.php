@@ -68,6 +68,7 @@ Route::prefix('admin/hoadon')->group(function () {
         Route::post('edit/{hoadonnhap}',[nhapHangController::class,'update']);
         Route::any('save/{hoadonnhap}',[nhapHangController::class,'save']);
         Route::any('delete/{hoadonnhap}',[nhapHangController::class,'delete']);
+        Route::any('destroy/{hoadonnhap}',[nhapHangController::class,'destroy']);
         Route::get('chitiet/{hoadonnhap}',[nhapHangController::class,'chitiet']);
     });
     Route::prefix('ban')->group(function () {

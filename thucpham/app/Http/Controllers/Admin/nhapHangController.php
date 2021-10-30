@@ -122,15 +122,33 @@ class nhapHangController extends Controller
         return redirect()->route('edit_nhap',['hoadonnhap'=>$hoadonnhap->id]);
 
     }
-    public  function delete(hoadonnhap $hoadonnhap){
+    public  function delete(Request $request){
         //xóa tất cả liên quan hóa đơn nhập hiện tại : 2 bảng hoadonnhap vs chi tiết
-        echo "delete";
+
+        //echo "delete";
+    }
+
+    public function destroy($id)
+    {
+        //destroy là xóa = id
+        try{
+            //xóa bảng chi tiết hóa đơn nhập
+            chitiethoadonnhap::where('idhoadonnhap', $id)->delete();
+            //xóa bảng hóa đơn nhập
+            hoadonnhap::where('id', $id)->delete();
+
+            echo "delete";
+        }
+        catch (\Exception $exception){
+            Session::flash('error', $exception->getMessage());
+        }
+        //echo "delete";
     }
     public function save(hoadonnhap $hoadonnhap)
     {
         //tăng số lượng cho mặt hàng ,tạo chi tiết mặt hàng = số lượng * mỗi sp
         //chitietthu : thứ tự chi tiết hiện tại của sp :(lấy max của chitiet sp tương ứng r +1)
-        //ky hiệu random cũng đc 
+        //ky hiệu random cũng đc
         //id chitet ban = null do chưa bán
         echo "save";
     }
