@@ -18,4 +18,8 @@ class chitietdonhang extends Model
         'giamgia'
     ];
     public $timestamps=false;
+
+    public function product() {
+        return $this->hasOne('App\Models\sanpham','id','idsanpham');
+    }
 }

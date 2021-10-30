@@ -19,4 +19,12 @@ class donhang extends Model
         'loaidon'
     ];
     public $timestamps=false;
+    
+    public function details() {
+        return $this->hasMany('App\Models\chitietdonhang','idhoadon','id');
+    }
+
+    public function getOderDetail($id) { 
+        return donhang::where('id',$id)->with('details.product')->first();
+    }
 }

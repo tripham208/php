@@ -49,3 +49,6 @@ Route::get('bill/id-customer/{idkhachhang?}', [billApiController::class, 'getByI
 Route::apiResource('bill-detail', billDetailApiController::class);
 Route::get('bill-detail/id-bill/{idhoadon?}', [billDetailApiController::class, 'getByIDBill']);
 Route::get('bill-detail/id-product/{idsanpham?}', [billDetailApiController::class, 'getByIDProduct']);
+
+
+Route::get('abc/{id?}', [billApiController::class, 'getProductByBillId']);

@@ -103,4 +103,11 @@ class billApiController extends Controller
     {
         return donhang::where('idkhachhang', $idkhachhang)->get();
     }
+
+    public function getProductByBillId($id)
+    {
+        $m = new donhang();
+        $order = $m->getOderDetail($id);
+        return $order;
+    }
 }
