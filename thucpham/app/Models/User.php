@@ -57,4 +57,12 @@ class User extends Authenticatable
 
         return "";
     }
+
+    public function idOrder() {
+        return $this->hasMany('App\Models\donhang','idkhachhang','id');
+    }
+
+    public function getOrder($id) {
+        return User::where('id',$id)->with('idOrder.details.product')->first();
+    }
 }

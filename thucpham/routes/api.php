@@ -51,4 +51,5 @@ Route::get('bill-detail/id-bill/{idhoadon?}', [billDetailApiController::class, '
 Route::get('bill-detail/id-product/{idsanpham?}', [billDetailApiController::class, 'getByIDProduct']);
 
 
-Route::get('abc/{id?}', [billApiController::class, 'getProductByBillId']);
+// Route::get('abc/{id?}', [billApiController::class, 'getProductByBillId']);
+Route::get('user/history/{id?}', [userApiController::class, 'getOrderByCustomerId']);

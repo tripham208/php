@@ -27,4 +27,9 @@ class donhang extends Model
     public function getOderDetail($id) { 
         return donhang::where('id',$id)->with('details.product')->first();
     }
+
+    public function bill() {
+        return $this->hasOne('App\Models\User','id','idkhachhang');
+    }
+    
 }

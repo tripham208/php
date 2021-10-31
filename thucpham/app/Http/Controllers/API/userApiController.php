@@ -105,4 +105,11 @@ class userApiController extends Controller
     {
         return User::where('email', $email)->get();
     }
+
+    public function getOrderByCustomerId($id)
+    {
+        $m = new User();
+        $order = $m->getOrder($id);
+        return $order;
+    }
 }
