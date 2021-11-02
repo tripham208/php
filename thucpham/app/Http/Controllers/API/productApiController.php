@@ -103,6 +103,6 @@ class productApiController extends Controller
 
     public function getByCategory($idloai)
     {
-        return sanpham::where('idloai', $idloai)->paginate(1);
+        return sanpham::where('idloai', $idloai)->paginate(6);
     }
 }
