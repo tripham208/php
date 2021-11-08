@@ -105,4 +105,8 @@ class productApiController extends Controller
     {
         return sanpham::where('idloai', $idloai)->paginate(6);
     }
+
+    public function searchProduct($name) {
+        return sanpham::where('ten', 'like', '%' . $name . '%')->paginate(6);
+    }
 }

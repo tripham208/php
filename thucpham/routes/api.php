@@ -27,6 +27,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Thong tin san pham API
 Route::apiResource('product', productApiController::class);
 Route::get('product/category/{idloai?}', [productApiController::class, 'getByCategory']);
+Route::get('product/search/{name?}', [productApiController::class, 'searchProduct']);
+
 
 //Thong tin loai san pham API
 Route::apiResource('category', categoryApiController::class);
