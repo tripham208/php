@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\chitietdonhang;
 use App\Models\donhang;
+use App\Models\sanpham;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,14 @@ class donHangController extends Controller
     {
         $hoadonban->loaidon=4;
         $hoadonban->save();
+        $data =chitietdonhang::where('idhoadon',$hoadonban->id)->get();
+        # echo $data;
+        foreach ($data as $key => $item){
+            $flight = sanpham::find($item->idsanpham);
+            $flight->soluong -= $item->soluong;
+
+            $flight->save();
+        }
         return redirect()->route('hoadonban',['loai'=>4]);
 
     }
