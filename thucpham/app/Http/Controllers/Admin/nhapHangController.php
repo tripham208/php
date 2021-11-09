@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\chitietnhapRequest;
 use App\Http\Requests\hoadonnhapRequest;
 use App\Models\chitiethoadonnhap;
+use App\Models\chitietsanpham;
 use App\Models\hoadonnhap;
 use App\Models\sanpham;
 use App\Models\User;
@@ -164,8 +165,30 @@ class nhapHangController extends Controller
         foreach ($data as $key => $item){
             $flight = sanpham::find($item->idsanpham);
             $flight->soluong += $item->soluong;
-
             $flight->save();
+
+            $val=1;
+            $max=chitietsanpham::where('idsanpham',$item->idsanpham)
+                ->orderBydesc('chitietthu')->limit(1)
+                ->get();
+            if ($max!=null)
+                foreach ($max as $i)
+                    $val=$i->chitietthu;
+
+
+            for ($x = 0; $x < $item->soluong; $x++) {
+                $val+=1;
+                chitietsanpham::create([
+                    'idsanpham' => $item->idsanpham,
+                    'chitietthu' => $val,
+                    'dongia' => $flight->dongia,
+                    'khoiluong' => $flight->donvi,
+                    'kyhieu' => rand(0,1000000),
+                    'idchitiethoadonnhap' => $item->id
+                ]);
+
+            }
+
         }
 
         return redirect()->route('sanpham');
