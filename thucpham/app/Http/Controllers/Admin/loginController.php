@@ -11,6 +11,7 @@ class loginController extends Controller
 {
     public function index()
     {
+        Auth::logout();
         return view('admin.login', [
             'title' => 'login admin'
         ]);
