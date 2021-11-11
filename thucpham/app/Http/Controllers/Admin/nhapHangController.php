@@ -183,7 +183,7 @@ class nhapHangController extends Controller
                     'chitietthu' => $val,
                     'dongia' => $flight->dongia,
                     'khoiluong' => $flight->donvi,
-                    'kyhieu' => rand(0,1000000),
+                    'kyhieu' => rand(0,100000000),
                     'idchitiethoadonnhap' => $item->id
                 ]);
 

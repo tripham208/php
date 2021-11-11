@@ -22,7 +22,6 @@ class User extends Authenticatable
         'email',
         'password',
         'taikhoan',
-        'matkhau',
         'ten',
         'sdt',
         'diachi',
