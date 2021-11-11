@@ -24,9 +24,10 @@ use App\Http\Controllers\admin\donHangController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::middleware(['auth'])->group(function () {
+
     Route::get('/admin/login', [loginController::class, 'index'])->name('login_admin');//name :tên router
     Route::post('/admin/login/check', [loginController::class, 'check'])->name('check_login_admin');
+Route::middleware(['auth'])->group(function () {
     Route::get('/admin/main', [mainController::class, 'index'])->name('admin');//name :tên router
 
     Route::prefix('admin/hanghoa')->group(function () {
