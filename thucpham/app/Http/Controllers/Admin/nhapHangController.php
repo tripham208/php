@@ -39,7 +39,8 @@ class nhapHangController extends Controller
     {
         return view('admin.hoadonnhap.hoadonnhap_add', [
             'title' => 'Nhập hàng',
-            'nhanvien' => User::where('loaitaikhoan', 2)->get(),
+            //'nhanvien' => User::where('loaitaikhoan', 2)->get(),
+            'nhanvien' => \Auth::getUser(),
             'ncc' => User::where('loaitaikhoan', 3)->get()
         ]);
     }

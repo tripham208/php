@@ -31,9 +31,7 @@
                                             <div class="col-sm-6">
                                                 <label for="exampleInputEmail"> Tên nhân viên</label>
                                                 <select class="form-control" name="nv">
-                                                    @foreach($nhanvien as $item)
-                                                        <option value="{{$item->id}}">{{$item->ten}}</option>
-                                                    @endforeach
+                                                        <option value="{{$nhanvien->id}}">{{$nhanvien->ten}}</option>
                                                 </select>
                                             </div>
                                         </div>
