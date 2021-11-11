@@ -25,7 +25,10 @@ class mainController extends Controller
         for ($x = 1; $x <= 12; $x++){
             $ds[]=\DB::table('thisyear')->where("thang",$x)->sum("tongtien");
         }
-
+        $td=[];
+        for ($x = 2; $x <= 4; $x++){
+            $td[]=\DB::table('today')->where("loaidon",$x)->count();
+        }
 
 
         return view('admin.dashboard', [
@@ -34,7 +37,8 @@ class mainController extends Controller
             'doanhthunam'=> $nam,
             'dondat'=>$dondat,
             'vandon'=>$vandon,
-            'list'=>$ds
+            'list'=>$ds,
+            'today'=>$td
         ]);
         /*
          * create view hoadonnam as
@@ -54,6 +58,12 @@ from `thucpham`.`donhang` `hd`
 where year(`hd`.`thoigian`) = year(curtime())
   and `hd`.`loaidon` = 2;
 
+create view today as
+select `dh`.`loaidon` AS `loaidon`
+from `thucpham`.`donhang` `dh`
+where year(`dh`.`thoigian`) = year(curtime())
+  and month(`dh`.`thoigian`) = month(curtime())
+  and dayofmonth(`dh`.`thoigian`) = dayofmonth(curtime());
 
          */
 

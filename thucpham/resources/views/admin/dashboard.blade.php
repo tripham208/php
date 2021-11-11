@@ -104,7 +104,7 @@
                     <!-- Card Header - Dropdown -->
                     <div
                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Doanh thu các tháng trong năm</h6>
 
                         <div class="dropdown no-arrow">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -136,7 +136,7 @@
                     <!-- Card Header - Dropdown -->
                     <div
                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Thống kê đơn hàng trong tháng</h6>
                         <div class="dropdown no-arrow">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -159,13 +159,13 @@
                         </div>
                         <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
+                                            <i class="fas fa-circle text-primary"></i> Giao thành công
                                         </span>
                             <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
+                                            <i class="fas fa-circle text-success"></i> Đơn đặt
                                         </span>
                             <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
+                                            <i class="fas fa-circle text-info"></i> Đang giao
                                         </span>
                         </div>
                     </div>
@@ -302,6 +302,45 @@
         });
 
     </script>
-    <script src="/template/admin/js/demo/chart-pie-demo.js"></script>
+    <script >
+        // Set new default font family and font color to mimic Bootstrap's default styling
+        Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#858796';
+
+        // Pie Chart Example
+        var ctx = document.getElementById("myPieChart");
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ["Giao thành công", "Đơn đặt", "Đang giao"],
+                datasets: [{
+                    data: [@foreach($today as $i)
+                        {{$i}},
+                        @endforeach],
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10,
+                },
+                legend: {
+                    display: false
+                },
+                cutoutPercentage: 80,
+            },
+        });
+
+    </script>
 
 @endsection
