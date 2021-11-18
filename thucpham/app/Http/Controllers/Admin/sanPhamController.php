@@ -61,6 +61,7 @@ class sanPhamController extends Controller
                 'donvi' => (string)$request->input('donvi'),
                 'dongia' => (int)$request->input('dongia'),
                 'anh' => (string)$request->input('image'),
+                'soluong' => 0
             ]);
             Session::flash('success', 'thành công');
         } catch (\Exception $exception) {
