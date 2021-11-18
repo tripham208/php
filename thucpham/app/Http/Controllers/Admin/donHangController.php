@@ -18,6 +18,7 @@ class donHangController extends Controller
     public function duyet(donhang $hoadonban)
     {
         $hoadonban->loaidon=4;
+        $hoadonban->idnhanvien=\Auth::id();
         $hoadonban->save();
         $data =chitietdonhang::where('idhoadon',$hoadonban->id)->get();
         # echo $data;

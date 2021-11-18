@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [sanPhamController::class, 'index'])->name('sanpham');
             Route::get('add', [sanPhamController::class, 'add']);
             Route::post('add', [sanPhamController::class, 'store']);
+            Route::get('chitiet/{sanpham}', [sanPhamController::class, 'chitiet']);
             Route::get('edit/{sanpham}', [sanPhamController::class, 'edit']);
             Route::post('edit/{sanpham}', [sanPhamController::class, 'update']);
             Route::delete('delete', [sanPhamController::class, 'delete']);
