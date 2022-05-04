@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\chitietdonhang;
 use Illuminate\Http\Request;
 use App\Models\loaisp;
 use Validator;
@@ -38,7 +39,18 @@ class categoryApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = loaisp::where("ten",$request->input('ten'))->get();
+
+        if (sizeof($product)==0 ) {
+            $billDetail = loaisp::create($request->all());
+            return response()->json($billDetail, 201);
+        }
+        $product[0]->cha = $request->input('cha');
+        $product[0]->save();
+        return response()->json($product, 200);
+
+
+
     }
 
     /**

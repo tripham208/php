@@ -23,7 +23,7 @@ class productApiController extends Controller
             JSON_UNESCAPED_UNICODE);
     }
 
-    /**
+    /**    php artisan serve --host 192.168.1.163 --port 5500
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

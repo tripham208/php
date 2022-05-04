@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\donhang;
+use Illuminate\Http\Response;
 
 class billApiController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -21,7 +23,7 @@ class billApiController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -31,12 +33,27 @@ class billApiController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
-        $bill = donhang::create($request->all());
+        if($request->input('id')==null)
+            $bill = donhang::create($request->all());
+        else{
+            $bill = donhang::find($request->input('id'));
+            $bill = $bill->update($request->all());
+            if ($request->input('loaidon')!=1){
+                donhang::create([
+                    'idnhanvien' => 1,
+                    'idkhachhang' => (int)$request->input('idkhachhang'),
+                    'tongtien' => 0,
+                    'thanhtoan' => 0,
+                    'loaidon' => 1
+                ]);
+            }
+        }
+
         return response()->json($bill, 201);
     }
 
@@ -44,7 +61,7 @@ class billApiController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function show($id)
     {
@@ -59,7 +76,7 @@ class billApiController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function edit($id)
     {
@@ -69,10 +86,11 @@ class billApiController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
+
     public function update(Request $request, $id)
     {
         $bill = donhang::find($id);
@@ -87,7 +105,7 @@ class billApiController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function destroy($id)
     {
