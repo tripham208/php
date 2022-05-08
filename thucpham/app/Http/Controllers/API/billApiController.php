@@ -38,21 +38,7 @@ class billApiController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->input('id')==null)
-            $bill = donhang::create($request->all());
-        else{
-            $bill = donhang::find($request->input('id'));
-            $bill = $bill->update($request->all());
-            if ($request->input('loaidon')!=1){
-                donhang::create([
-                    'idnhanvien' => 1,
-                    'idkhachhang' => (int)$request->input('idkhachhang'),
-                    'tongtien' => 0,
-                    'thanhtoan' => 0,
-                    'loaidon' => 1
-                ]);
-            }
-        }
+        $bill = donhang::create($request->all());
 
         return response()->json($bill, 201);
     }
@@ -93,14 +79,35 @@ class billApiController extends Controller
 
     public function update(Request $request, $id)
     {
+
+
         $bill = donhang::find($id);
         if (is_null($bill)) {
             return response()->json(["message" => "Not found"], 404);
         }
+
         $bill->update($request->all());
+
+        if ((int)$request->input('loaidon') == 3) {
+            date_default_timezone_set('Asia/Bangkok');
+            $date = date('Y/m/d H:i:s');
+            $year = substr($date,0,4);
+            $yearN = (int) $year + 1;
+            $date=str_replace($year,$yearN,$date);
+            $bill = donhang::create([
+                'idnhanvien' => 1,
+                'idkhachhang' => (int)$request->input('idkhachhang'),
+                'tongtien' => 0,
+                'loaidon' => 1,
+                'thoigian'=> $date,
+                'thanhtoan' => 0
+            ]);
+            return response()->json($bill, 200);
+        }
+
+
         return response()->json($bill, 200);
     }
-
     /**
      * Remove the specified resource from storage.
      *

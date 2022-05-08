@@ -32,24 +32,13 @@ class billDetailApiController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-
-        $product = chitietdonhang::where("idsanpham",$request->input('idsanpham'))
-            ->where("idhoadon",$request->input('idhoadon'))->get();
-       // return response()->json($product, 201);
-        if (sizeof($product)==0 ) {
-            $billDetail = chitietdonhang::create($request->all());
-            return response()->json($billDetail, 201);
-        }
-        $product[0]->soluong = $request->input('soluong');
-        $product[0]->dongia = $request->input('dongia');
-        $product[0]->giamgia = $request->input('giamgia');
-        $product[0]->save();
-        return response()->json($product, 200);
+        $billDetail = chitietdonhang::create($request->all());
+        return response()->json($billDetail, 201);
     }
 
     /**
@@ -85,9 +74,9 @@ class billDetailApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $idsanpham, $iddonhang)
+    public function update(Request $request, $id)
     {
-        $billDetail = chitietdonhang::where('idsanpham', $idsanpham)->where('iddonhang', $iddonhang)->get()[0];
+        $billDetail = chitietdonhang::where('id', $id)->get()[0];
         if (is_null($billDetail)) {
            return response()->json(["message" => "Not found"], 404);
         }
