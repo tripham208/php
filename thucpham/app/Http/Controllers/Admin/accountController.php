@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class taikhoanController extends Controller
+class accountController extends Controller
 {
     public function get()
     {

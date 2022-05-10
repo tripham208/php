@@ -8,7 +8,7 @@ use App\Models\thuonghieu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class thuonghieuController extends Controller
+class branchController extends Controller
 {
 
     public  function get(){

@@ -17,16 +17,16 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th >Tên</th>
-                            <th >Tài khoản</th>
-                            <th >Số điện thoại</th>
+                            <th>Tên</th>
+                            <th>Tài khoản</th>
+                            <th>Số điện thoại</th>
                             <th>Email</th>
                         </tr>
                         </thead>
                         <tbody>
 
 
-                        {!!\App\Http\Controllers\Admin\taikhoanController::list($data)!!}
+                        {!!\App\Http\Controllers\Admin\accountController::list($data)!!}
 
 
                         </tbody>

@@ -27,7 +27,7 @@ class loginController extends Controller
             'password' => 'required'
         ]);
         if (Auth::attempt([
-            'taikhoan' => $request->input('username'),
+            'taikhoan' => "{$request->input('username')}",
             'password' => $request->input('password')
         ],
 

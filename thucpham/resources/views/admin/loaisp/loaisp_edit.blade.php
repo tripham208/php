@@ -28,13 +28,14 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Tên loại cha</label>
                                             <select class="form-control" name="parent">
-                                                <option value="null" >Không</option>
+                                                <option value="null">Không</option>
                                                 @foreach($loaisps as $item)
                                                     @if($item->id==$loaisp->id)
                                                     @elseif($item->id==$loaisp->cha)
-                                                        <option value="{{$item->id}}" selected >{{\App\Http\Controllers\Admin\loaispController::name($loaisp->cha)}}</option>
+                                                        <option value="{{$item->id}}"
+                                                                selected>{{\App\Http\Controllers\Admin\categoryController::name($loaisp->cha)}}</option>
                                                     @else
-                                                        <option value="{{$item->id}}" >{{$item->ten}}</option>
+                                                        <option value="{{$item->id}}">{{$item->ten}}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
@@ -42,7 +43,8 @@
                                         <div class="form-group" style="margin-bottom: 100px">
                                             <a style="float: left" href="/admin/hanghoa/loaisp"
                                                class="btn btn-primary btn-user btn-block col-lg-3">Trở về</a>
-                                            <button type="submit" style="float: right;margin-top: 10px" class="btn btn-primary btn-user btn-block col-lg-3">
+                                            <button type="submit" style="float: right;margin-top: 10px"
+                                                    class="btn btn-primary btn-user btn-block col-lg-3">
                                                 Lưu
                                             </button>
 

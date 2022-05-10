@@ -18,7 +18,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                        <tr >
+                        <tr>
                             <th style="width: 5%">Mã</th>
                             <th style="width: 25%">Nhân viên</th>
                             <th style="width: 25%">Khách hàng</th>
@@ -29,7 +29,7 @@
                         <tbody>
 
 
-                        {!!\App\Http\Controllers\Admin\donHangController::list($data)!!}
+                        {!!\App\Http\Controllers\Admin\billController::list($data)!!}
 
 
                         </tbody>
@@ -58,7 +58,7 @@
                 $.ajax({
                     type: 'DELETE',
                     datatype: 'JSON',
-                    data: { id },
+                    data: {id},
                     url: url,
                     success: function (result) {
                         if (result.error === false) {

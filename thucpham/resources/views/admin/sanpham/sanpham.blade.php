@@ -14,9 +14,10 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" align="center" style="text-align: center">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" align="center"
+                           style="text-align: center">
                         <thead>
-                        <tr >
+                        <tr>
                             <th style="width: 10%">Ảnh</th>
                             <th style="width: 15%">Tên</th>
                             <th style="width: 20%">Thương hiệu</th>
@@ -29,7 +30,7 @@
                         <tbody>
 
 
-                        {!!\App\Http\Controllers\Admin\sanPhamController::list($data)!!}
+                        {!!\App\Http\Controllers\Admin\productController::list($data)!!}
 
 
                         </tbody>
@@ -58,7 +59,7 @@
                 $.ajax({
                     type: 'DELETE',
                     datatype: 'JSON',
-                    data: { id },
+                    data: {id},
                     url: url,
                     success: function (result) {
                         if (result.error === false) {

@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use mysql_xdevapi\Exception;
+use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 use phpDocumentor\Reflection\Types\True_;
 
 class userApiController extends Controller
@@ -125,29 +126,34 @@ class userApiController extends Controller
         return User::where('email', $email)->get();
     }
 
-    public function login($username, $password)
+    public function login(Request $request)
     {
+        //return  $request->input("taikhoan");
         if (Auth::attempt([
-            'taikhoan' => $username,
-            'password' => $password
+            'taikhoan' => $request->input("taikhoan"),
+            'password' => $request->input("password")
         ],
 
         )) {
-            $user = User::where('taikhoan', $username)->get();// đi đến admin
+            $user = User::where('taikhoan', $request->input("taikhoan"))->get();// đi đến admin
             return response()->json($user, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
                 JSON_UNESCAPED_UNICODE);
         }
         if (Auth::attempt([
-            'email' => $username,
-            'password' => $password
+            'email' =>  $request->input("taikhoan"),
+            'password' =>  $request->input("password")
         ],
 
         )) {
-            $user = User::where('email', $username)->get();// đi đến admin
+            $user = User::where('email', $request->input("taikhoan"))->get();// đi đến admin
             return response()->json($user, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
                 JSON_UNESCAPED_UNICODE);
         }
         return [];
+    }
+    public function getAccByPhone(Request $request)
+    {
+        return User::where('sdt', $request->input("phone"))->get();
     }
 
     public function getCart($id)

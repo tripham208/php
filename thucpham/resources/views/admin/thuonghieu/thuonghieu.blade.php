@@ -28,7 +28,7 @@
                         <tbody>
 
 
-                        {!!\App\Http\Controllers\Admin\thuonghieuController::list($data)!!}
+                        {!!\App\Http\Controllers\Admin\branchController::list($data)!!}
 
 
                         </tbody>
@@ -57,7 +57,7 @@
                 $.ajax({
                     type: 'DELETE',
                     datatype: 'JSON',
-                    data: { id },
+                    data: {id},
                     url: url,
                     success: function (result) {
                         if (result.error === false) {

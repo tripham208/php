@@ -26,28 +26,32 @@
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Tên sản phẩm</label>
-                                            <input type="" name="name" class="form-control form-control-user" value="{{$data->ten}}"
+                                            <input type="" name="name" class="form-control form-control-user"
+                                                   value="{{$data->ten}}"
                                                    id="exampleInputPassword" placeholder="Nhập tên sản phẩm">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Đơn vị</label>
-                                            <input type="" name="donvi" class="form-control form-control-user" value="{{$data->donvi}}"
-                                                   id="1" placeholder="Nhập đơn vị" >
+                                            <input type="" name="donvi" class="form-control form-control-user"
+                                                   value="{{$data->donvi}}"
+                                                   id="1" placeholder="Nhập đơn vị">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Đơn giá</label>
-                                            <input type="number" name="dongia" class="form-control form-control-user" value="{{$data->dongia}}"
+                                            <input type="number" name="dongia" class="form-control form-control-user"
+                                                   value="{{$data->dongia}}"
                                                    id="exampleInputPassword" placeholder="Nhập đơn giá">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Tên loại </label>
                                             <select class="form-control" name="loai">
-                                                <option value="null" >Không</option>
+                                                <option value="null">Không</option>
                                                 @foreach($loaisps as $item)
                                                     @if($item->id==$data->idloai)
-                                                        <option value="{{$item->id}}" selected >{{\App\Http\Controllers\Admin\sanPhamController::loaisp($data->idloai)}}</option>
+                                                        <option value="{{$item->id}}"
+                                                                selected>{{\App\Http\Controllers\Admin\productController::loaisp($data->idloai)}}</option>
                                                     @else
-                                                        <option value="{{$item->id}}" >{{$item->ten}}</option>
+                                                        <option value="{{$item->id}}">{{$item->ten}}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
@@ -58,16 +62,17 @@
                                                 <option value="null">Không</option>
                                                 @foreach($thuonghieu as $item)
                                                     @if($item->id==$data->idthuonghieu)
-                                                        <option value="{{$item->id}}" selected >{{\App\Http\Controllers\Admin\sanPhamController::thuonghieu($data->idthuonghieu)}}</option>
+                                                        <option value="{{$item->id}}"
+                                                                selected>{{\App\Http\Controllers\Admin\productController::thuonghieu($data->idthuonghieu)}}</option>
                                                     @else
-                                                        <option value="{{$item->id}}" >{{$item->ten}}</option>
+                                                        <option value="{{$item->id}}">{{$item->ten}}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Mô tả</label>
-                                            <textarea name="description" id="editor1" rows="10" cols="80" >
+                                            <textarea name="description" id="editor1" rows="10" cols="80">
                                                      {{$data->mota}}
                                             </textarea>
 
@@ -75,7 +80,8 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Hình ảnh </label>
                                             <br>
-                                            <input id="ckfinder-input-1" name="image" type="text" style="width:60%" value="{{$data->anh}}">
+                                            <input id="ckfinder-input-1" name="image" type="text" style="width:60%"
+                                                   value="{{$data->anh}}">
 
                                         </div>
                                         @csrf
@@ -104,7 +110,6 @@
         </div>
 
     </div>
-
 
 @endsection
 @section('footer')
@@ -144,6 +149,5 @@
         }
     </script>
     <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js" type="text/javascript"></script>
-
 
 @endsection

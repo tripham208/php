@@ -42,9 +42,9 @@ Route::get('brand/name/{ten?}', [brandApiController::class, 'getByNameBrand']);
 //Thong tin tai khoan API
 Route::apiResource('user', userApiController::class);
 Route::get('user/email/{email?}', [userApiController::class, 'getByEmail']);
-Route::get('user/email/{email?}', [userApiController::class, 'getByEmail']);
+Route::post('user/phone', [userApiController::class, 'getAccByPhone']);
 
-Route::get('user/checklogin/{username?}/{password?}', [userApiController::class, 'login'])->name('check_login_user');
+Route::post('user/checklogin', [userApiController::class, 'login'])->name('check_login_user');
 
 //Thong tin don hang API
 Route::apiResource('bill', billApiController::class);

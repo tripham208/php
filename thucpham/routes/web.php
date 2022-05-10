@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\loginController;
 use App\Http\Controllers\Admin\mainController;
-use App\Http\Controllers\Admin\loaispController;
-use App\Http\Controllers\admin\thuonghieuController;
-use App\Http\Controllers\admin\taikhoanController;
-use App\Http\Controllers\Admin\sanPhamController;
+use App\Http\Controllers\Admin\categoryController;
+use App\Http\Controllers\admin\branchController;
+use App\Http\Controllers\admin\accountController;
+use App\Http\Controllers\Admin\productController;
 use App\Http\Controllers\admin\nhapHangController;
-use App\Http\Controllers\admin\donHangController;
+use App\Http\Controllers\admin\billController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,35 +32,35 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('admin/hanghoa')->group(function () {
         Route::prefix('loaisp')->group(function () {
-            Route::get('/', [LoaispController::class, 'index'])->name('loaisp');
-            Route::get('add', [LoaispController::class, 'add']);
-            Route::post('add', [LoaispController::class, 'store']);
-            Route::get('edit/{loaisp}', [LoaispController::class, 'edit']);
-            Route::post('edit/{loaisp}', [LoaispController::class, 'update']);
-            Route::delete('delete', [LoaispController::class, 'delete']);
+            Route::get('/', [categoryController::class, 'index'])->name('loaisp');
+            Route::get('add', [categoryController::class, 'add']);
+            Route::post('add', [categoryController::class, 'store']);
+            Route::get('edit/{loaisp}', [categoryController::class, 'edit']);
+            Route::post('edit/{loaisp}', [categoryController::class, 'update']);
+            Route::delete('delete', [categoryController::class, 'delete']);
         });
         Route::prefix('thuonghieu')->group(function () {
-            Route::get('/', [thuonghieuController::class, 'index'])->name('thuonghieu');
-            Route::get('add', [thuonghieuController::class, 'add']);
-            Route::post('add', [thuonghieuController::class, 'store']);
-            Route::get('edit/{thuonghieu}', [thuonghieuController::class, 'edit']);
-            Route::post('edit/{thuonghieu}', [thuonghieuController::class, 'update']);
-            Route::delete('delete', [thuonghieuController::class, 'delete']);
+            Route::get('/', [branchController::class, 'index'])->name('thuonghieu');
+            Route::get('add', [branchController::class, 'add']);
+            Route::post('add', [branchController::class, 'store']);
+            Route::get('edit/{thuonghieu}', [branchController::class, 'edit']);
+            Route::post('edit/{thuonghieu}', [branchController::class, 'update']);
+            Route::delete('delete', [branchController::class, 'delete']);
         });
         Route::prefix('sanpham')->group(function () {
-            Route::get('/', [sanPhamController::class, 'index'])->name('sanpham');
-            Route::get('add', [sanPhamController::class, 'add']);
-            Route::post('add', [sanPhamController::class, 'store']);
-            Route::get('chitiet/{sanpham}', [sanPhamController::class, 'chitiet']);
-            Route::get('edit/{sanpham}', [sanPhamController::class, 'edit']);
-            Route::post('edit/{sanpham}', [sanPhamController::class, 'update']);
-            Route::delete('delete', [sanPhamController::class, 'delete']);
+            Route::get('/', [productController::class, 'index'])->name('sanpham');
+            Route::get('add', [productController::class, 'add']);
+            Route::post('add', [productController::class, 'store']);
+            Route::get('chitiet/{sanpham}', [productController::class, 'chitiet']);
+            Route::get('edit/{sanpham}', [productController::class, 'edit']);
+            Route::post('edit/{sanpham}', [productController::class, 'update']);
+            Route::delete('delete', [productController::class, 'delete']);
         });
 
     });
     Route::prefix('admin/doitac')->group(function () {
-        Route::get('/{loai}', [taikhoanController::class, 'index'])->name('taikhoan');
-        Route::get('chitiet/{taikhoan}', [taikhoanController::class, 'chitiet']);
+        Route::get('/{loai}', [accountController::class, 'index'])->name('taikhoan');
+        Route::get('chitiet/{taikhoan}', [accountController::class, 'chitiet']);
     });
     Route::prefix('admin/hoadon')->group(function () {
         Route::prefix('nhap')->group(function () {
@@ -75,10 +75,10 @@ Route::middleware(['auth'])->group(function () {
             Route::get('chitiet/{hoadonnhap}', [nhapHangController::class, 'chitiet']);
         });
         Route::prefix('ban')->group(function () {
-            Route::get('/{loai}', [donHangController::class, 'index'])->name('hoadonban');
-            Route::get('chitiet/{hoadonban}', [donHangController::class, 'chitiet']);
-            Route::get('chitiet/duyet/{hoadonban}', [donHangController::class, 'duyet']);
-            Route::get('chitiet/giao/{hoadonban}', [donHangController::class, 'giao']);
+            Route::get('/{loai}', [billController::class, 'index'])->name('hoadonban');
+            Route::get('chitiet/{hoadonban}', [billController::class, 'chitiet']);
+            Route::get('chitiet/duyet/{hoadonban}', [billController::class, 'duyet']);
+            Route::get('chitiet/giao/{hoadonban}', [billController::class, 'giao']);
         });
     });
 });

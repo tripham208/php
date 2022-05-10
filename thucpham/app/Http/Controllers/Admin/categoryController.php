@@ -14,7 +14,7 @@ use function PHPUnit\Framework\exactly;
 /**
  *
  */
-class loaispController extends Controller
+class categoryController extends Controller
 {
 
     /**

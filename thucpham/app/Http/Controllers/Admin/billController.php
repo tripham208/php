@@ -9,7 +9,7 @@ use App\Models\sanpham;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class donHangController extends Controller
+class billController extends Controller
 {
     public function getl($loai)
     {
