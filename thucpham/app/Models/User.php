@@ -14,19 +14,21 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
 
-    protected $table = 'taikhoan';
+    protected $table = 'account';
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'name',
+        'fullName',
         'email',
         'password',
-        'taikhoan',
-        'ten',
-        'sdt',
-        'diachi',
-        'loaitaikhoan'
+        'username',
+        'phone',
+        'address',
+        'typeAccount'
     ];
+
+
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
@@ -50,10 +52,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public static function name($id)
+    public static function name($id): string
     {
         try {
-            return User::where('id', $id)->first()->ten;
+            return User::where('id', $id)->first()->fullName;
         } catch (\Exception $ex) {
 
         }
@@ -61,8 +63,9 @@ class User extends Authenticatable
         return "";
     }
 
-    public function idOrder() {
-        return $this->hasMany('App\Models\donhang','idkhachhang','id');
+    public function idOrder(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany('App\Models\Order','idkhachhang','id');
     }
 
     public function getOrder($id) {

@@ -34,11 +34,11 @@
 
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">TQC Organic</div>
+            <div class="sidebar-brand-text mx-3">PMT Organic</div>
         </a>
 
         <!-- Divider -->
@@ -86,7 +86,7 @@
                     <h6 class="collapse-header">Hàng hóa:</h6>
                     <a class="collapse-item"  href="/admin/hanghoa/loaisp">Loại hàng hóa</a>
                     <a class="collapse-item"  href="/admin/hanghoa/thuonghieu">Thương hiệu</a>
-                    <a class="collapse-item"  href="/admin/hanghoa/sanpham">Sản phẩm</a>
+                    <a class="collapse-item"  href="/admin/hanghoa/product">Sản phẩm</a>
                 </div>
             </div>
 
