@@ -20,7 +20,8 @@ class OrderDetail extends Model
     ];
     public $timestamps=false;
 
-    public function product() {
-        return $this->hasOne('App\Models\Product','id','idsanpham');
+    public function product(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne('App\Models\Product','id','idProduct');
     }
 }

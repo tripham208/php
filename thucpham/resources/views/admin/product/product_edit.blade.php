@@ -27,45 +27,45 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Tên sản phẩm</label>
                                             <input type="" name="name" class="form-control form-control-user"
-                                                   value="{{$data->ten}}"
+                                                   value="{{$data->name}}"
                                                    id="exampleInputPassword" placeholder="Nhập tên sản phẩm">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Đơn vị</label>
-                                            <input type="" name="donvi" class="form-control form-control-user"
-                                                   value="{{$data->donvi}}"
+                                            <input type="" name="unit" class="form-control form-control-user"
+                                                   value="{{$data->unit}}"
                                                    id="1" placeholder="Nhập đơn vị">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Đơn giá</label>
-                                            <input type="number" name="dongia" class="form-control form-control-user"
-                                                   value="{{$data->dongia}}"
+                                            <input type="number" name="unitPrice" class="form-control form-control-user"
+                                                   value="{{$data->unitPrice}}"
                                                    id="exampleInputPassword" placeholder="Nhập đơn giá">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Tên loại </label>
-                                            <select class="form-control" name="loai">
-                                                <option value="null">Không</option>
-                                                @foreach($loaisps as $item)
-                                                    @if($item->id==$data->idloai)
+                                            <select class="form-control" name="idTypeProduct">
+                                                <option value="">Không</option>
+                                                @foreach($typeProducts as $item)
+                                                    @if($item->id==$data->idTypeProduct)
                                                         <option value="{{$item->id}}"
-                                                                selected>{{\App\Http\Controllers\Admin\ProductController::loaisp($data->idloai)}}</option>
+                                                                selected>{{\App\Http\Controllers\Admin\ProductController::type($data->idTypeProduct)}}</option>
                                                     @else
-                                                        <option value="{{$item->id}}">{{$item->ten}}</option>
+                                                        <option value="{{$item->id}}">{{$item->name}}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Thương hiệu </label>
-                                            <select class="form-control" name="thuonghieu">
-                                                <option value="null">Không</option>
-                                                @foreach($thuonghieu as $item)
-                                                    @if($item->id==$data->idthuonghieu)
+                                            <select class="form-control" name="branch">
+                                                <option value="">Không</option>
+                                                @foreach($branch as $item)
+                                                    @if($item->id==$data->idBranch)
                                                         <option value="{{$item->id}}"
-                                                                selected>{{\App\Http\Controllers\Admin\ProductController::thuonghieu($data->idthuonghieu)}}</option>
+                                                                selected>{{\App\Http\Controllers\Admin\ProductController::branch($data->idBranch)}}</option>
                                                     @else
-                                                        <option value="{{$item->id}}">{{$item->ten}}</option>
+                                                        <option value="{{$item->id}}">{{$item->name}}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
@@ -73,7 +73,7 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Mô tả</label>
                                             <textarea name="description" id="editor1" rows="10" cols="80">
-                                                     {{$data->mota}}
+                                                     {{$data->description}}
                                             </textarea>
 
                                         </div>
@@ -81,7 +81,7 @@
                                             <label for="exampleInputEmail"> Hình ảnh </label>
                                             <br>
                                             <input id="ckfinder-input-1" name="image" type="text" style="width:60%"
-                                                   value="{{$data->anh}}">
+                                                   value="{{$data->image}}">
 
                                         </div>
                                         @csrf

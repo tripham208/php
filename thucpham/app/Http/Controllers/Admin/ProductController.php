@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Branch;
-use App\Models\TypeProduct;
 use App\Models\Product;
+use App\Models\TypeProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -44,11 +44,11 @@ class ProductController extends Controller
         try {
             Product::create([
                 'name' => (string)$request->input('name'),
-                'idTypeProduct' => (int)$request->input('loai'),
-                'idBranch' => (int)$request->input('branch'),
+                'idTypeProduct' => $request->input('idTypeProduct'),
+                'idBranch' => $request->input('branch'),
                 'description' => (string)$request->input('description'),
-                'unit' => (string)$request->input('donvi'),
-                'unitPrice' => (int)$request->input('dongia'),
+                'unit' => (string)$request->input('unit'),
+                'unitPrice' => (int)$request->input('unitPrice'),
                 'image' => (string)$request->input('image'),
                 'quantity' => 0
             ]);
@@ -63,7 +63,7 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public static function loaisp($id)
+    public static function type($id): string
     {
         try {
             return TypeProduct::where('id', $id)->first()->name;
@@ -74,7 +74,7 @@ class ProductController extends Controller
         return "";
     }
 
-    public static function thuonghieu($id): string
+    public static function branch($id): string
     {
         try {
             return Branch::where('id', $id)->first()->name;
@@ -85,11 +85,11 @@ class ProductController extends Controller
         return "";
     }
 
-    public function chitiet(Product $sanpham): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function detail(Product $product): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('admin.product.product_detail', [
             'title' => 'Chi tiết hóa đơn nhập',
-            'product'=>$sanpham,
+            'product' => $product,
             //'data'=> importProductDetail::where('idhoadonnhap',$importProduct->id)->get()
         ]);
     }
@@ -102,7 +102,7 @@ class ProductController extends Controller
             <tr onclick="location.href=\'product/chitiet/' . $item->id . '\';">
                     <th ><img src="' . $item->image . '"  style="width:100%;height:100%;"></th>
                    <th >' . $item->name . '</th>
-                   <th >' . self::thuonghieu($item->idBranch) . '</th>
+                   <th >' . self::branch($item->idBranch) . '</th>
                    <th >' . $item->quantity . '</th>
                     <th >' . $item->unit . '</th>
                      <th >' . $item->unitPrice . '</th>
@@ -123,32 +123,40 @@ class ProductController extends Controller
         return $html;
     }
 
-    public function edit(Product $sanpham)
+    public function edit(Product $product)
     {
         //dd($typeProduct);
         return view('admin.product.product_edit', [
             'title' => 'Chỉnh Sửa loại sản phẩm: ',
-            'loaisps' => TypeProduct::all(),
+            'typeProducts' => TypeProduct::all(),
             'branch' => Branch::all(),
-            'data' => $sanpham
+            'data' => $product
         ]);
     }
 
-    public function update(Product $sanpham, ProductRequest $request)
+    public function update(Product $product, ProductRequest $request): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
-        $sanpham->name = (string)$request->input('name');
-        $sanpham->idTypeProduct = (int)$request->input('loai');
-        $sanpham->idBranch = (int)$request->input('branch');
-        $sanpham->description = (string)$request->input('description');
-        $sanpham->unit = (string)$request->input('donvi');
-        $sanpham->unitPrice = (int)$request->input('dongia');
-        $sanpham->image = (string)$request->input('image');
-        $sanpham->save();
+        //dd($request->input());
 
+        try {
+            $product->name = (string)$request->input('name');
+            $product->idTypeProduct = $request->input('idTypeProduct');
+            $product->idBranch = $request->input('branch');
+            $product->description = (string)$request->input('description');
+            $product->unit = (string)$request->input('unit');
+            $product->unitPrice = (int)$request->input('unitPrice');
+            $product->image = (string)$request->input('image');
+            $product->save();
+            Session::flash('success', 'thành công');
+        } catch (\Exception $exception) {
+            Session::flash('error', $exception->getMessage());
+            return redirect()->back();
+        }
         return redirect('admin/hanghoa/product');
+
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request): \Illuminate\Http\JsonResponse
     {
         $data = Product::where('id', $request->input('id'))->first();
         $result = false;

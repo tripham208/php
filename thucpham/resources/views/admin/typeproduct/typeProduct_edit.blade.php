@@ -23,19 +23,19 @@
                                             <label for="exampleInputEmail"> Tên loại</label>
                                             <input type="" name="name" class="form-control form-control-user"
                                                    id="exampleInputPassword" placeholder="Nhập tên loại"
-                                                   value="{{$loaisp->ten}}">
+                                                   value="{{$typeProduct->name}}">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Tên loại cha</label>
                                             <select class="form-control" name="parent">
                                                 <option value="null">Không</option>
                                                 @foreach($loaisps as $item)
-                                                    @if($item->id==$loaisp->id)
-                                                    @elseif($item->id==$loaisp->cha)
+                                                    @if($item->id==$typeProduct->id)
+                                                    @elseif($item->id==$typeProduct->father)
                                                         <option value="{{$item->id}}"
-                                                                selected>{{\App\Http\Controllers\Admin\CategoryController::name($loaisp->cha)}}</option>
+                                                                selected>{{\App\Http\Controllers\Admin\CategoryController::name($typeProduct->father)}}</option>
                                                     @else
-                                                        <option value="{{$item->id}}">{{$item->ten}}</option>
+                                                        <option value="{{$item->id}}">{{$item->name}}</option>
                                                     @endif
                                                 @endforeach
                                             </select>

@@ -101,9 +101,9 @@ class AccountController extends Controller
             return redirect('admin/hanghoa/branch');
         }
     */
-    public function detail(User $user): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function detail(User $account): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
-        $typeAccount = $user->typeAccount;
+        $typeAccount = $account->typeAccount;
         if ($typeAccount == 1) {
             $type = 'Khách hàng';
             return redirect()->back();
@@ -112,12 +112,13 @@ class AccountController extends Controller
             return redirect()->back();
         } else {
             $type = 'Nhà cung cấp';
-            return view('admin.account.taikhoan_chitiet', [
-                'title' => 'Chi tiết ' . $type,
-                'loaitaikhoan' => $type,
-                'account' => $user,
-                'data' => ImportProduct::where('idnhacungcap', $user->id)->get()
-            ]);
+
         }
+        return view('admin.account.account_detail', [
+            'title' => 'Chi tiết ' . $type,
+            'loaitaikhoan' => $type,
+            'account' => $account,
+            'data' => ImportProduct::where('idSupplier', $account->id)->get()
+        ]);
     }
 }

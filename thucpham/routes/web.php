@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [ProductController::class, 'index'])->name('product');
             Route::get('add', [ProductController::class, 'add']);
             Route::post('add', [ProductController::class, 'store']);
-            Route::get('chitiet/{product}', [ProductController::class, 'chitiet']);
+            Route::get('chitiet/{product}', [ProductController::class, 'detail']);
             Route::get('edit/{product}', [ProductController::class, 'edit']);
             Route::post('edit/{product}', [ProductController::class, 'update']);
             Route::delete('delete', [ProductController::class, 'delete']);
@@ -76,9 +76,9 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::prefix('ban')->group(function () {
             Route::get('/{loai}', [BillController::class, 'index'])->name('hoadonban');
-            Route::get('chitiet/{hoadonban}', [BillController::class, 'detail']);
-            Route::get('chitiet/duyet/{hoadonban}', [BillController::class, 'duyet']);
-            Route::get('chitiet/giao/{hoadonban}', [BillController::class, 'giao']);
+            Route::get('chitiet/{order}', [BillController::class, 'detail']);
+            Route::get('chitiet/duyet/{order}', [BillController::class, 'duyet']);
+            Route::get('chitiet/giao/{order}', [BillController::class, 'giao']);
         });
     });
 });

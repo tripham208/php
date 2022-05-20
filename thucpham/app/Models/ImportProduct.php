@@ -11,7 +11,7 @@ class ImportProduct extends Model
     protected $table='importProduct';
     protected $fillable=[
         'id',
-        'idCustomer',
+        'idEmployee',
         'idSupplier',
         'total',
         'time'

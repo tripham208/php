@@ -9,10 +9,10 @@ class ImportProductDetail extends Model
 {
     use HasFactory;
 
-    protected $table = 'chitiethoadonnhap';
+    protected $table = 'importProductDetail';
     protected $fillable = [
         'id',
-        'idImportDetail',
+        'idImport',
         'idProduct',
         'quantity',
         'unitPrice',

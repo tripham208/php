@@ -49,7 +49,7 @@
                                     <br>
                                     <br>
                                     <div class="form-group" style="margin-bottom: 100px">
-                                        <a style="float: left" href="/admin/hanghoa/thuonghieu"
+                                        <a style="float: left" href="/admin/hanghoa/branch"
                                            class="btn btn-primary btn-user btn-block col-lg-3">Trở về</a>
                                         <button type="submit" style="float: right;margin-top: 10px" form="form"
                                                 class="btn btn-primary btn-user btn-block col-lg-3">

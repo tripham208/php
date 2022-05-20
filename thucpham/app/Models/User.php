@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Model ;
 
 class User extends Authenticatable
 {
@@ -52,15 +50,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public static function name($id): string
+    public static function getName($id = 1): string
     {
         try {
-            return User::where('id', $id)->first()->fullName;
+            return User::find($id)->fullName;
         } catch (\Exception $ex) {
 
         }
 
-        return "";
+        return "not set";
     }
 
     public function idOrder(): \Illuminate\Database\Eloquent\Relations\HasMany

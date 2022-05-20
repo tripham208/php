@@ -14,10 +14,10 @@
                 <h3 class="h3 mb-2 text-gray-800">Chi tiết {{$loaidon}} {{$hoadon->id}}</h3>
             </div>
             <div class="card-body">
-                <h4>Nhân viên: {{\App\Models\User::name($hoadon->idnhanvien)}}</h4>
-                <h4>Khách hàng: {{\App\Models\User::name($hoadon->idkhachhang)}}</h4>
-                <h4>Thời gian: {{$hoadon->thoigian}}</h4>
-                <h4>Tổng tiền: {{$hoadon->tongtien}}</h4>
+                <h4>Nhân viên: {{\App\Models\User::getName($hoadon->idEmployee)}}</h4>
+                <h4>Khách hàng: {{\App\Models\User::getName($hoadon->idCustomer)}}</h4>
+                <h4>Thời gian: {{$hoadon->time}}</h4>
+                <h4>Tổng tiền: {{$hoadon->total}}</h4>
             </div>
         </div>
 
@@ -25,12 +25,12 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary" style="float: left">Danh sách chi tiết {{$loaidon}} </h6>
-                 @if($hoadon->loaidon==3)
+                 @if($hoadon->typeOrder==3)
                 <a class="btn btn-primary" href="duyet/{{$hoadon->id}}"
                         style="float: right">
                     Duyệt đơn
                 </a>
-                @elseif($hoadon->loaidon==4)
+                @elseif($hoadon->typeOrder==4)
                         <a class="btn btn-primary" href="giao/{{$hoadon->id}}"
                            style="float: right">
                             Giao thành công
@@ -59,10 +59,10 @@
                             @endphp
                             <tr>
                                 <th>{{$x}}</th>
-                                <th>{{\App\Models\Product::where('id', $item->idsanpham)->first()->ten}}</th>
-                                <th> {{$item->soluong}}</th>
-                                <th>{{$item->dongia}}</th>
-                                <th>{{$item->giamgia}}</th>
+                                <th>{{\App\Models\Product::where('id', $item->idProduct)->first()->name}}</th>
+                                <th> {{$item->quantity}}</th>
+                                <th>{{$item->unitPrice}}</th>
+                                <th>{{$item->discount}}</th>
                             </tr>
 
                         @endforeach

@@ -62,8 +62,8 @@ class BillController extends Controller
             $html .= '
             <tr onclick="location.href=\'chitiet/' . $item->id . '\';">
                    <th>' . $item->id . '</th>
-                   <th>' . User::name($item->idCustomer) . '</th>
-                   <th>' . User::name($item->idEmployee) . '</th>
+                   <th>' . User::getName($item->idCustomer) . '</th>
+                   <th>' . User::getName($item->idEmployee) . '</th>
                    <th>' . $item->total . '</th>
                    <th>' . $item->time . '</th>
             </tr>

@@ -24,14 +24,14 @@
                                                 <label for="exampleInputEmail"> Tên nhà cung cấp</label>
                                                 <select class="form-control" name="ncc">
                                                     @foreach($ncc as $item)
-                                                        <option value="{{$item->id}}">{{$item->ten}}</option>
+                                                        <option value="{{$item->id}}">{{$item->fullName}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label for="exampleInputEmail"> Tên nhân viên</label>
                                                 <select class="form-control" name="nv">
-                                                        <option value="{{$nhanvien->id}}">{{$nhanvien->ten}}</option>
+                                                        <option value="{{$nhanvien->id}}">{{\App\Models\User::getName($nhanvien->id)}}</option>
                                                 </select>
                                             </div>
                                         </div>

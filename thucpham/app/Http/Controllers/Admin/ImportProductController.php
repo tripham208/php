@@ -22,15 +22,15 @@ class ImportProductController extends Controller
         ]);
     }
 
-    public static function name($id)
+    public static function name($id): string
     {
         try {
-            return User::where('id', $id)->first()->name;
+            return User::where('id', $id)->first()->fullName;
         } catch (\Exception $ex) {
 
         }
 
-        return "";
+        return "not found";
     }
 
 
@@ -38,29 +38,29 @@ class ImportProductController extends Controller
     {
         return view('admin.importProduct.importProduct_add', [
             'title' => 'Nhập hàng',
-            //'nhanvien' => User::where('loaitaikhoan', 2)->get(),
+            //'nhanvien' => User::where('typeAccount', 2)->get(),
             'nhanvien' => \Auth::getUser(),
-            'ncc' => User::where('loaitaikhoan', 3)->get()
+            'ncc' => User::where('typeAccount', 3)->get()
         ]);
     }
 
-    public function detail(ImportProduct $importOrder): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function detail(ImportProduct $importProduct): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('admin.importProduct.importProduct_detail', [
             'title' => 'Chi tiết hóa đơn nhập',
-            'hoadon' => $importOrder,
-            'data' => ImportProductDetail::where('idhoadonnhap', $importOrder->id)->get()
+            'hoadon' => $importProduct,
+            'data' => ImportProductDetail::where('idImport', $importProduct->id)->get()
         ]);
     }
 
-    public function addDetail(ImportProduct $hoadonnhap): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function addDetail(ImportProduct $importProduct): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
 
         return view('admin.importProduct.importProduct_addDetail', [
             'title' => 'Chi tiết hóa đơn nhập',
-            'hoadon' => $hoadonnhap,
+            'hoadon' => $importProduct,
             'product' => Product::all(),
-            'data' => ImportProductDetail::where('idhoadonnhap', $hoadonnhap->id)->get()
+            'data' => ImportProductDetail::where('idImport', $importProduct->id)->get()
         ]);
     }
 
@@ -75,8 +75,8 @@ class ImportProductController extends Controller
             ImportProduct::create([
                 'idCustomer' => (int)$request->input('nv'),
                 'idSupplier' => (int)$request->input('ncc'),
-                'total' => $date,
-                'time' => 0
+                'time' => $date,
+                'total' => 0
             ]);
             Session::flash('success', 'thành công');
         } catch (\Exception $exception) {
@@ -86,7 +86,7 @@ class ImportProductController extends Controller
         /*DB::table('typeProduct')->insert([
             'ten' => 'kayla@example.com'
         ]);*/
-        return redirect()->route('edit_nhap', ['importProduct' => ImportProduct::where('thoigian', $date)->first()->id]);
+        return redirect()->route('edit_nhap', ['importProduct' => ImportProduct::where('time', $date)->first()->id]);
     }
 
 
@@ -108,13 +108,13 @@ class ImportProductController extends Controller
         return $html;
     }
 
-    public function update(ImportProduct $i, importDetailRequest $request): \Illuminate\Http\RedirectResponse
+    public function update(ImportProduct $importProduct, importDetailRequest $request): \Illuminate\Http\RedirectResponse
     {
         //dd($request->input());
 
         try {
             ImportProductDetail::create([
-                'idImportDetail' => $i->id,
+                'idImport' => $importProduct->id,
                 'idProduct' => (int)$request->input('sp'),
                 'quantity' => (int)$request->input('sl'),
                 'unitPrice' => (int)$request->input('dg'),
@@ -125,8 +125,8 @@ class ImportProductController extends Controller
             $tien = (int)$request->input('sl') * (int)$request->input('dg');
             if ((int)$request->input('gg') != null)
                 $tien = $tien * (100 - (int)$request->input('gg')) / 100;
-            $i->total += $tien;
-            $i->save();
+            $importProduct->total += $tien;
+            $importProduct->save();
             //Session::flash('success', 'thành công');
         } catch (\Exception $exception) {
             Session::flash('error', $exception->getMessage());
@@ -135,60 +135,60 @@ class ImportProductController extends Controller
         echo (int)$request->input('sl')*(int)$request->input('dg');
         echo $importProduct->tongtien;
         */
-        return redirect()->route('edit_nhap', ['importProduct' => $i->id]);
+        return redirect()->route('edit_nhap', ['importProduct' => $importProduct->id]);
 
     }
 
-    public function delete(ImportProduct $data)
+    public function delete(ImportProduct $importProduct): string|\Illuminate\Http\RedirectResponse
     {
         //xóa tất cả liên quan hóa đơn nhập hiện tại : 2 bảng importProduct vs chi tiết
 
         //echo "delete";
         try {
             //xóa bảng chi tiết hóa đơn nhập
-            ImportProductDetail::where('idImportDetail', $data->id)->delete();
+            ImportProductDetail::where('idImport', $importProduct->id)->delete();
             //xóa bảng hóa đơn nhập
-            ImportProduct::where('id', $data->id)->delete();
+            ImportProduct::where('id', $importProduct->id)->delete();
 
             return redirect()->route('importProduct');
         } catch (\Exception $exception) {
-            Session::flash('error', $exception->getMessage());
+            return $exception->getMessage();
         }
     }
 
 
-    public function save(ImportProduct $hoadonnhap)
+    public function save(ImportProduct $importProduct): \Illuminate\Http\RedirectResponse
     {
         //tăng số lượng cho mặt hàng ,tạo chi tiết mặt hàng = số lượng * mỗi sp
         //chitietthu : thứ tự chi tiết hiện tại của sp :(lấy max của chitiet sp tương ứng r +1)
         //ky hiệu random cũng đc
         //id chitet ban = null do chưa bán
         //echo "save";
-        $data = ImportProductDetail::where('idhoadonnhap', $hoadonnhap->id)->get();
+        $data = ImportProductDetail::where('idImport', $importProduct->id)->get();
         # echo $data;
         foreach ($data as $key => $item) {
-            $flight = Product::find($item->idsanpham);
-            $flight->soluong += $item->soluong;
-            $flight->save();
+            $product = Product::find($item->idProduct);
+            $product->quantity += $item->quantity;
+            $product->save();
 
             $val = 1;
-            $max = ProductDetail::where('idsanpham', $item->idsanpham)
-                ->orderBydesc('chitietthu')->limit(1)
+            $max = ProductDetail::where('idProduct', $item->idProduct)
+                ->orderBydesc('numberOfDetail')->limit(1)
                 ->get();
             if ($max != null)
                 foreach ($max as $i)
-                    $val = $i->chitietthu;
+                    $val = $i->numberOfDetail;
 
 
-            for ($x = 0; $x < $item->soluong; $x++) {
+            for ($x = 0; $x < $item->quantity; $x++) {
                 $val += 1;
                 ProductDetail::create([
-                    'idsanpham' => $item->idsanpham,
-                    'chitietthu' => $val,
-                    'dongia' => $flight->dongia,
-                    'khoiluong' => $flight->donvi,
-                    'kyhieu' => rand(0, 100000000),
-                    'idchitiethoadonnhap' => $item->id
+                    'idProduct' => $item->idProduct,
+                    'numberOfDetail' => $val,
+                    'unitPrice' => $product->unitPrice,
+                    'weight' => $product->unit,
+                    'serial' => rand(0, 100000000),
+                    'idImportProductDetail' => $item->id
                 ]);
 
             }

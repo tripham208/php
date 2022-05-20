@@ -30,15 +30,22 @@ class LoginController extends Controller
             'username' => 'required',//bắt buộc
             'password' => 'required'
         ]);
-        if (Auth::attempt([
-            'username' => "{$request->input('username')}",
-            'password' => $request->input('password')
-        ],
+        try {
+            if (Auth::attempt([
+                'username' => "{$request->input('username')}",
+                'password' => $request->input('password')
+            ],
 
-            $request->input('remember'))) {
-            return redirect()->route('admin');// đi đến admin
+                $request->input('remember'))) {
+                return redirect()->route('admin');// đi đến admin
+            }
+            Session::flash('error', 'Tài khoản hoặc mật khẩu không chính xác');
+            return redirect()->back();
+        } catch (\Exception $exception) {
+            Session::flash('error', $exception->getMessage());
+            return redirect()->back();
         }
-        Session::flash('error', 'Tài khoản hoặc mật khẩu không chính xác');
-        return redirect()->back();
+
+
     }
 }

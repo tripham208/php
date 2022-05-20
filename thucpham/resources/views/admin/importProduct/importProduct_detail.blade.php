@@ -14,11 +14,11 @@
                 <h3 class="h3 mb-2 text-gray-800">Chi tiết hóa đơn nhập {{$hoadon->id}}</h3>
             </div>
             <div class="card-body">
-                <h4>Nhân viên: {{\App\Http\Controllers\Admin\ImportProductController::name($hoadon->idnhanvien)}}</h4>
+                <h4>Nhân viên: {{\App\Http\Controllers\Admin\ImportProductController::name($hoadon->idEmployee)}}</h4>
                 <h4>Nhà cung
-                    cấp: {{\App\Http\Controllers\Admin\ImportProductController::name($hoadon->idnhacungcap)}}</h4>
-                <h4>Thời gian: {{$hoadon->thoigian}}</h4>
-                <h4>Tổng tiền: {{$hoadon->tongtien}}</h4>
+                    cấp: {{\App\Http\Controllers\Admin\ImportProductController::name($hoadon->idSupplier)}}</h4>
+                <h4>Thời gian: {{$hoadon->time}}</h4>
+                <h4>Tổng tiền: {{$hoadon->total}}</h4>
             </div>
         </div>
 
@@ -51,11 +51,11 @@
                             @endphp
                             <tr>
                                 <th>{{$x}}</th>
-                                <th>{{\App\Models\Product::where('id', $item->idsanpham)->first()->ten}}</th>
-                                <th> {{$item->soluong}}</th>
-                                <th>{{$item->dongia}}</th>
-                                <th>{{$item->giamgia}}</th>
-                                <th>{{$item->hansudung}}</th>
+                                <th>{{\App\Models\Product::where('id', $item->idProduct)->first()->name}}</th>
+                                <th> {{$item->quantity}}</th>
+                                <th>{{$item->unitPrice}}</th>
+                                <th>{{$item->discount}}</th>
+                                <th>{{$item->expiry}}</th>
                                 <th>{{$item->serial}}</th>
                             </tr>
 

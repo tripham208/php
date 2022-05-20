@@ -28,19 +28,19 @@
                                             <label for="exampleInputEmail"> Tên thương hiệu</label>
                                             <input type="text" name="name" class="form-control form-control-user"
                                                    id="exampleInputPassword" placeholder="Nhập tên thương hiệu"
-                                                   value="{{$loaisp->ten}}">
+                                                   value="{{$branch->name}}">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Mô tả</label>
                                             <textarea name="description" id="editor1" rows="10" cols="80">
-                                                    {{$loaisp->mota}}
+                                                    {{$branch->description}}
                                             </textarea>
 
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Hình ảnh </label>
                                             <br>
-                                            <input id="ckfinder-input-1" name="image" type="text" style="width:60%" value="{{$loaisp->anh}}">
+                                            <input id="ckfinder-input-1" name="image" type="text" style="width:60%" value="{{$branch->image}}">
 
                                         </div>
 
@@ -50,7 +50,7 @@
                                     <br>
                                     <br>
                                     <div class="form-group" style="margin-bottom: 100px">
-                                        <a style="float: left" href="/admin/hanghoa/thuonghieu"
+                                        <a style="float: left" href="/admin/hanghoa/branch"
                                            class="btn btn-primary btn-user btn-block col-lg-3">Trở về</a>
                                         <button form="edit" type="submit" style="float: right;margin-top: 10px" class="btn btn-primary btn-user btn-block col-lg-3">
                                             Lưu chỉnh sửa

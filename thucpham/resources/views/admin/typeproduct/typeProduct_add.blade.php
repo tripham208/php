@@ -28,15 +28,16 @@
                                             <label for="exampleInputEmail"> Tên loại cha</label>
                                             <select class="form-control" name="parent">
                                                 <option value="null">Không</option>
-                                                @foreach($loaisp as $item)
-                                                    <option value="{{$item->id}}">{{$item->ten}}</option>
+                                                @foreach($typeProduct as $item)
+                                                    <option value="{{$item->id}}">{{$item->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group" style="margin-bottom: 100px">
-                                            <a style="float: left" href="/admin/hanghoa/loaisp"
+                                            <a style="float: left" href="/admin/hanghoa/typeProduct"
                                                class="btn btn-primary btn-user btn-block col-lg-3">Trở về</a>
-                                            <button type="submit" style="float: right;margin-top: 10px" class="btn btn-primary btn-user btn-block col-lg-3">
+                                            <button type="submit" style="float: right;margin-top: 10px"
+                                                    class="btn btn-primary btn-user btn-block col-lg-3">
                                                 Thêm loại
                                             </button>
 

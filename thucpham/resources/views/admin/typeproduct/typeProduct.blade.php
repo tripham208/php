@@ -20,13 +20,13 @@
                             <th>Mã</th>
                             <th>Tên loại</th>
                             <th>Tên loại cha</th>
-                            <th style="width: 70px"><a href="/admin/hanghoa/loaisp/add">Thêm</a></th>
+                            <th style="width: 70px"><a href="/admin/hanghoa/typeProduct/add">Thêm</a></th>
                         </tr>
                         </thead>
                         <tbody>
 
 
-                        {!!\App\Http\Controllers\Admin\CategoryController::list($loaisp)!!}
+                        {!!\App\Http\Controllers\Admin\CategoryController::list($typeProduct)!!}
 
 
                         </tbody>

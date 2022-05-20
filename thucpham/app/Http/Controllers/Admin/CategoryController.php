@@ -94,7 +94,7 @@ class CategoryController extends Controller
         return $html;
     }
 
-    public function edit(TypeProduct $typeProduct)
+    public function edit(TypeProduct $typeProduct): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         //dd($typeProduct);
         return view('admin.typeProduct.typeProduct_edit', [
@@ -104,16 +104,16 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function update(TypeProduct $loaisp, TypeProductRequest $request)
+    public function update(TypeProduct $typeProduct, TypeProductRequest $request): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
-        $loaisp->name = (string)$request->input('name');
-        $loaisp->father = $request->input('parent');
-        $loaisp->save();
+        $typeProduct->name = (string)$request->input('name');
+        $typeProduct->father = $request->input('parent');
+        $typeProduct->save();
 
         return redirect('admin/hanghoa/typeProduct');
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request): \Illuminate\Http\JsonResponse
     {
         $data = TypeProduct::where('id', $request->input('id'))->first();
         $result = false;

@@ -22,7 +22,7 @@
                             <th style="width: 15%">Logo</th>
                             <th style="width: 20%">Tên thương hiệu</th>
                             <th>Mô tả</th>
-                            <th style="width: 70px"><a href="/admin/hanghoa/thuonghieu/add">Thêm</a></th>
+                            <th style="width: 70px"><a href="/admin/hanghoa/branch/add">Thêm</a></th>
                         </tr>
                         </thead>
                         <tbody>

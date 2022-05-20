@@ -89,7 +89,7 @@ class branchController extends Controller
         //dd($typeProduct);
         return view('admin.branch.branch_edit', [
             'title' => 'Chỉnh Sửa loại sản phẩm: ',
-            'typeProduct' => $branch,
+            'branch' => $branch,
             'ten' => $branch->name
         ]);
     }

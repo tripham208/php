@@ -24,7 +24,7 @@
                             <th>Số lượng</th>
                             <th>Đơn vị</th>
                             <th>Đơn giá</th>
-                            <th style="width: 70px"><a href="/admin/hanghoa/sanpham/add">Thêm</a></th>
+                            <th style="width: 70px"><a href="/admin/hanghoa/product/add">Thêm</a></th>
                         </tr>
                         </thead>
                         <tbody>

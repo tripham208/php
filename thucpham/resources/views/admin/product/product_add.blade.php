@@ -31,29 +31,30 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Đơn vị</label>
-                                            <input type="" name="donvi" class="form-control form-control-user"
+                                            <input type="" name="unit" class="form-control form-control-user"
                                                    id="exampleInputPassword" placeholder="Nhập đơn vị">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Đơn giá</label>
-                                            <input type="number" name="dongia" class="form-control form-control-user"
+                                            <input type="number" min="0" name="unitPrice"
+                                                   class="form-control form-control-user"
                                                    id="exampleInputPassword" placeholder="Nhập đơn giá">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Tên loại </label>
-                                            <select class="form-control" name="loai">
-                                                <option value="null">Không</option>
-                                                @foreach($loaisp as $item)
-                                                    <option value="{{$item->id}}">{{$item->ten}}</option>
+                                            <select class="form-control" name="idTypeProduct">
+                                                <option value="" >Không</option>
+                                                @foreach($typeProduct as $item)
+                                                    <option value="{{$item->id}}">{{$item->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail"> Thương hiệu </label>
-                                            <select class="form-control" name="thuonghieu">
-                                                <option value="null">Không</option>
-                                                @foreach($thuonghieu as $item)
-                                                    <option value="{{$item->id}}">{{$item->ten}}</option>
+                                            <select class="form-control" name="branch">
+                                                <option value="">Không</option>
+                                                @foreach($branch as $item)
+                                                    <option value="{{$item->id}}">{{$item->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -77,7 +78,7 @@
                                     <br>
                                     <br>
                                     <div class="form-group" style="margin-bottom: 100px">
-                                        <a style="float: left" href="/admin/hanghoa/sanpham"
+                                        <a style="float: left" href="/admin/hanghoa/product"
                                            class="btn btn-primary btn-user btn-block col-lg-3">Trở về</a>
                                         <button type="submit" style="float: right;margin-top: 10px" form="form"
                                                 class="btn btn-primary btn-user btn-block col-lg-3">
