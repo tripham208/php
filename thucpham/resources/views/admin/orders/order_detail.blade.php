@@ -14,6 +14,7 @@
                 <h3 class="h3 mb-2 text-gray-800">Chi tiết {{$loaidon}} {{$hoadon->id}}</h3>
             </div>
             <div class="card-body">
+
                 <h4>Nhân viên: {{\App\Models\User::getName($hoadon->idEmployee)}}</h4>
                 <h4>Khách hàng: {{\App\Models\User::getName($hoadon->idCustomer)}}</h4>
                 <h4>Thời gian: {{$hoadon->time}}</h4>
@@ -24,18 +25,24 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
+                @include('alert')
                 <h6 class="m-0 font-weight-bold text-primary" style="float: left">Danh sách chi tiết {{$loaidon}} </h6>
-                 @if($hoadon->typeOrder==3)
-                <a class="btn btn-primary" href="duyet/{{$hoadon->id}}"
-                        style="float: right">
-                    Duyệt đơn
-                </a>
+                @if($hoadon->typeOrder==3)
+                    <a class="btn btn-primary" href="huy/{{$hoadon->id}}"
+                       style="float: right;margin-left: 10px">
+                        Từ chối
+                    </a>
+                    <a class="btn btn-primary" href="duyet/{{$hoadon->id}}"
+                       style="float: right">
+                        Duyệt đơn
+                    </a>
                 @elseif($hoadon->typeOrder==4)
-                        <a class="btn btn-primary" href="giao/{{$hoadon->id}}"
-                           style="float: right">
-                            Giao thành công
-                        </a>
+                    <a class="btn btn-primary" href="giao/{{$hoadon->id}}"
+                       style="float: right">
+                        Giao thành công
+                    </a>
                 @endif
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -74,38 +81,38 @@
             </div>
         </div>
 
-@endsection
-@section('footer')
-    <!-- Page level plugins -->
-    <script src="/template/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/template/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    @endsection
+    @section('footer')
+        <!-- Page level plugins -->
+            <script src="/template/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="/template/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/template/admin/js/demo/datatables-demo.js"></script>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        function removeRow(id, url) {
-            if (confirm('Xóa mà không thể khôi phục. Bạn có chắc ?')) {
-                $.ajax({
-                    type: 'DELETE',
-                    datatype: 'JSON',
-                    data: {id},
-                    url: url,
-                    success: function (result) {
-                        if (result.error === false) {
-                            alert(result.message);
-                            location.reload();
-                        } else {
-                            alert('Xóa lỗi vui lòng thử lại');
-                        }
+            <!-- Page level custom scripts -->
+            <script src="/template/admin/js/demo/datatables-demo.js"></script>
+            <script>
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-                })
-            }
-        }
-    </script>
+                });
+
+                function removeRow(id, url) {
+                    if (confirm('Xóa mà không thể khôi phục. Bạn có chắc ?')) {
+                        $.ajax({
+                            type: 'DELETE',
+                            datatype: 'JSON',
+                            data: {id},
+                            url: url,
+                            success: function (result) {
+                                if (result.error === false) {
+                                    alert(result.message);
+                                    location.reload();
+                                } else {
+                                    alert('Xóa lỗi vui lòng thử lại');
+                                }
+                            }
+                        })
+                    }
+                }
+            </script>
 @endsection

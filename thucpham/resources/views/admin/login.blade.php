@@ -10,7 +10,9 @@
     <meta name="author" content="">
 
     <title>{{$title}}</title>
-
+    <link rel = "icon" href =
+    "/ckfinder/userfiles/images/thuonghieu/logo.png"
+          type = "image/x-icon">
     <!-- Custom fonts for this template-->
     <link href="/template/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link

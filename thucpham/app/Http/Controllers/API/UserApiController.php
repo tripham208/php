@@ -19,23 +19,20 @@ class UserApiController extends Controller
     }
 
 
-    public function create()
-    {
-        //
-    }
+
 
 
     public function store(Request $request): \Illuminate\Http\JsonResponse|array
     {
-        $check = User::where('account', $request->input("account"))->get();
+        $check = User::where('username', $request->input("username"))->get();
 
         if (sizeof($check)>0){
             return [];
         }
         $user = User::create($request->all());
         Order::create([
-            'idCustomer' => 1,
-            'idEmployee' => $user->id,
+            'idCustomer' => $user->id,
+            'idEmployee' => 1,
             'total' => 0,
             'payment' => 0,
             'typeOrder' => 1
@@ -92,22 +89,22 @@ class UserApiController extends Controller
     {
         //return  $request->input("account");
         if (Auth::attempt([
-            'account' => $request->input("account"),
+            'username' => $request->input("username"),
             'password' => $request->input("password")
         ],
 
         )) {
-            $user = User::where('account', $request->input("account"))->get();// đi đến admin
+            $user = User::where('username', $request->input("username"))->get();// đi đến admin
             return response()->json($user, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
                 JSON_UNESCAPED_UNICODE);
         }
         if (Auth::attempt([
-            'email' =>  $request->input("account"),
+            'email' =>  $request->input("username"),
             'password' =>  $request->input("password")
         ],
 
         )) {
-            $user = User::where('email', $request->input("account"))->get();// đi đến admin
+            $user = User::where('email', $request->input("username"))->get();// đi đến admin
             return response()->json($user, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
                 JSON_UNESCAPED_UNICODE);
         }
@@ -115,12 +112,12 @@ class UserApiController extends Controller
     }
     public function getAccByPhone(Request $request)
     {
-        return User::where('sdt', $request->input("phone"))->get();
+        return User::where('phone', $request->input("phone"))->get();
     }
 
     public function getCart($id)
     {
-        return Order::where('idkhachhang', $id)->where('loaidon', 1)->get()[0];
+        return Order::where('idCustomer', $id)->where('typeOrder', 1)->get()[0];
     }
 
     public function getOrderByCustomerId($id)

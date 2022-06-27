@@ -79,6 +79,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('chitiet/{order}', [BillController::class, 'detail']);
             Route::get('chitiet/duyet/{order}', [BillController::class, 'duyet']);
             Route::get('chitiet/giao/{order}', [BillController::class, 'giao']);
+            Route::get('chitiet/huy/{order}', [BillController::class, 'huy']);
         });
     });
 });

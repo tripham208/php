@@ -8,6 +8,7 @@ use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\User;
 use Auth;
+use Illuminate\Support\Facades\Session;
 
 class BillController extends Controller
 {
@@ -18,17 +19,26 @@ class BillController extends Controller
 
     public function duyet(Order $order)
     {
-        $order->typeOrder = 4;
-        $order->idCustomer = Auth::id();
-        $order->save();
+        $order->idEmployee = Auth::id();
+
         $data = OrderDetail::where('idOrder', $order->id)->get();
         # echo $data;
+        foreach ($data as $key => $item) {
+            $flight = Product::find($item->idProduct);
+            if ($flight->quantity - $item->quantity < 0) {
+                Session::flash('error', " $flight->name chỉ còn $flight->quantity");
+                $order->save();
+                return redirect()->back();
+            }
+        }
+        $order->typeOrder = 4;
         foreach ($data as $key => $item) {
             $flight = Product::find($item->idProduct);
             $flight->quantity -= $item->quantity;
 
             $flight->save();
         }
+        $order->save();
         return redirect()->route('hoadonban', ['loai' => 4]);
 
     }
@@ -39,6 +49,13 @@ class BillController extends Controller
         $order->save();
         return redirect()->route('hoadonban', ['loai' => 2]);
 
+    }
+
+    public function huy(Order $order)
+    {
+        $order->typeOrder = 5;
+        $order->save();
+        return redirect()->route('hoadonban', ['loai' => 3]);
     }
 
     public function index($loai)
@@ -55,6 +72,7 @@ class BillController extends Controller
             'data' => $this->getByType($loai)
         ]);
     }
+
     public static function list($data)
     {
         $html = '';

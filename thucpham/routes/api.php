@@ -43,7 +43,6 @@ Route::get('brand/name/{ten?}', [brandApiController::class, 'getByNameBrand']);
 Route::apiResource('user', UserApiController::class);
 Route::get('user/email/{email?}', [UserApiController::class, 'getByEmail']);
 Route::post('user/phone', [UserApiController::class, 'getAccByPhone']);
-
 Route::post('user/checklogin', [UserApiController::class, 'login'])->name('check_login_user');
 
 //Thong tin don hang API

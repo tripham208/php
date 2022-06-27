@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-
+    <link rel = "icon" href =
+    "/ckfinder/userfiles/images/thuonghieu/logo.png"
+          type = "image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -36,7 +38,7 @@
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
             <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
+                <img src="/ckfinder/userfiles/images/thuonghieu/logo.png" height="30dp" width="30dp">
             </div>
             <div class="sidebar-brand-text mx-3">PMT Organic</div>
         </a>

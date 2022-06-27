@@ -97,7 +97,7 @@ class ImportProductController extends Controller
             $html .= '
             <tr onclick="location.href=\'nhap/chitiet/' . $item->id . '\';">
                    <th>' . $item->id . '</th>
-                   <th>' . self::name($item->idCustomer) . '</th>
+                   <th>' . self::name($item->idEmployee) . '</th>
                    <th>' . self::name($item->idSupplier) . '</th>
                    <th>' . $item->total . '</th>
                    <th>' . $item->time . '</th>

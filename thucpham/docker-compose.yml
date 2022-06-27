@@ -1,0 +1,34 @@
+# For more information: https://laravel.com/docs/sail
+version: '3'
+services:
+    laravel.test:
+        build:
+            context: ./docker                               #vendor/laravel/sail/runtimes/8.1
+            dockerfile: Dockerfile
+
+
+        ports:
+            - '800:800'
+            #- '${HMR_PORT:-8080}:8080'
+
+        volumes:
+            - '.:/var/www/html'
+            - './docker/nginx_log:/var/log/nginx'
+            - './docker/php-fpm/php-fpm.log:/var/log/php-fpm.log'
+            - './docker/config/app.conf:/etc/nginx/conf.f/app.conf'
+        working_dir: '/var/www/html'
+
+    mysql:
+        image: 'mysql/mysql-server:8.0'
+        ports:
+            - '3306:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+        volumes:
+            - './docker/mysql:/var/lib/mysql'
+
+
